@@ -1,0 +1,133 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-[background,backdrop-filter,box-shadow] ${
+        isScrolled
+          ? "backdrop-blur supports-[backdrop-filter]:bg-[rgba(225,6,0,0.32)] shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_8px_20px_-12px_rgba(0,0,0,0.35)]"
+          : "bg-[rgba(225,6,0,0.16)]"
+      }`}
+    >
+      <div className="container-px">
+        <nav className="flex h-16 sm:h-20 items-center justify-between">
+          {/* Anasayfa Linki */}
+          <Link href="/" className="group">
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-lg sm:text-xl font-bold text-white group-hover:text-accent transition-colors"
+            >
+              Anasayfa
+            </motion.span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            {[
+              { href: "/hakkimizda", label: "Hakkımızda" },
+              { href: "/referanslar", label: "Referanslar" },
+              { href: "#ozellikler", label: "Hizmetler" },
+              { href: "#hizmet", label: "Kapsam" },
+              { href: "#teklif", label: "Teklif" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-muted hover:text-foreground transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="#teklif"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-white hover:bg-accent-dark transition-colors"
+            >
+              Teklif Al
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-border hover:border-accent/60 transition-colors"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label="Menüyü Aç/Kapat"
+          >
+            <motion.span
+              initial={false}
+              animate={isOpen ? { rotate: 45 } : { rotate: 0 }}
+              className="block h-0.5 w-5 bg-foreground"
+            />
+            <motion.span
+              initial={false}
+              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block h-0.5 w-5 bg-foreground"
+            />
+            <motion.span
+              initial={false}
+              animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              className="block h-0.5 w-5 bg-foreground"
+            />
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="mobile"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="md:hidden overflow-hidden border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+          >
+            <div className="container-px py-4">
+              <div className="grid gap-2">
+                {[
+                  { href: "/hakkimizda", label: "Hakkımızda" },
+                  { href: "/referanslar", label: "Referanslar" },
+                  { href: "#ozellikler", label: "Hizmetler" },
+                  { href: "#hizmet", label: "Kapsam" },
+                  { href: "#teklif", label: "Teklif" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="h-12 inline-flex items-center justify-between rounded-md px-3 hover:bg-muted/10"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span>{item.label}</span>
+                    <motion.span
+                      initial={{ x: -6, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-muted"
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}

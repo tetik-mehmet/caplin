@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Siyah/Beyaz/Kırmızı paleti */
+  --background: #0b0b0c; /* neredeyse siyah */
+  --foreground: #f2f3f5; /* yumuşak beyaz */
+  --muted: #b8bcc6; /* ikincil metin için gri */
+  --accent: #e10600; /* parlak kırmızı (Ferrari red tonuna yakın) */
+  --accent-dark: #b00500; /* hover için koyu kırmızı */
+  --card: #121214; /* kart arka planı */
+  --border: #1e1f22; /* sınır çizgileri */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0b;
+    --foreground: #ededee;
+    --card: #111113;
+    --border: #1a1b1e;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, Segoe UI,
+    Roboto, Arial, Helvetica, sans-serif;
 }
+
+/* Yardımcı sınıflar */
+.container-px {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-px {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-px {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Logo animasyonları kaldırıldı */
