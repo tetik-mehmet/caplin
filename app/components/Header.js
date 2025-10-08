@@ -112,7 +112,7 @@ export default function Header() {
               <div className="grid gap-2">
                 {[
                   { href: "/hakkimizda", label: "Hakkımızda" },
-                  { href: "/referanslar", label: "Referanslar" },
+                  { href: "/referans", label: "Referanslar" },
                   { href: "#ozellikler", label: "Hizmetler" },
                   { href: "#hizmet", label: "Kapsam" },
                   { href: "#teklif", label: "Teklif" },
