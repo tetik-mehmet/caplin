@@ -37,7 +37,7 @@ export default function Header() {
             {[
               { href: "/hakkimizda", label: "Hakkımızda" },
               { href: "/referans", label: "Referanslar" },
-              { href: "#ozellikler", label: "Hizmetler" },
+              { href: "/hizmetler", label: "Hizmetler" },
               { href: "#hizmet", label: "Kapsam" },
               { href: "#teklif", label: "Teklif" },
             ].map((item) => (
@@ -113,7 +113,7 @@ export default function Header() {
                 {[
                   { href: "/hakkimizda", label: "Hakkımızda" },
                   { href: "/referans", label: "Referanslar" },
-                  { href: "#ozellikler", label: "Hizmetler" },
+                  { href: "/hizmetler", label: "Hizmetler" },
                   { href: "#hizmet", label: "Kapsam" },
                   { href: "#teklif", label: "Teklif" },
                 ].map((item) => (
