@@ -26,21 +26,17 @@ export default function Header() {
       <div className="container-px">
         <nav className="flex h-16 sm:h-20 items-center justify-between">
           {/* Anasayfa Linki */}
-          <Link href="/" className="group">
-            <motion.span
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-lg sm:text-xl font-bold text-white group-hover:text-accent transition-colors"
-            >
+          <Link href="/" className="group flex-shrink-0">
+            <span className="text-lg sm:text-xl font-bold text-white group-hover:text-accent transition-colors">
               Anasayfa
-            </motion.span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             {[
               { href: "/hakkimizda", label: "Hakkımızda" },
-              { href: "/referanslar", label: "Referanslar" },
+              { href: "/referans", label: "Referanslar" },
               { href: "#ozellikler", label: "Hizmetler" },
               { href: "#hizmet", label: "Kapsam" },
               { href: "#teklif", label: "Teklif" },
@@ -63,25 +59,40 @@ export default function Header() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-border hover:border-accent/60 transition-colors"
+            className="md:hidden inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-border hover:border-accent/60 transition-colors"
             onClick={() => setIsOpen((v) => !v)}
             aria-label="Menüyü Aç/Kapat"
           >
-            <motion.span
-              initial={false}
-              animate={isOpen ? { rotate: 45 } : { rotate: 0 }}
-              className="block h-0.5 w-5 bg-foreground"
-            />
-            <motion.span
-              initial={false}
-              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block h-0.5 w-5 bg-foreground"
-            />
-            <motion.span
-              initial={false}
-              animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="block h-0.5 w-5 bg-foreground"
-            />
+            <div className="w-5 h-4 relative flex flex-col justify-between">
+              <motion.span
+                initial={false}
+                animate={
+                  isOpen
+                    ? { rotate: 45, y: 7, backgroundColor: "rgb(225, 6, 0)" }
+                    : { rotate: 0, y: 0 }
+                }
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="block h-0.5 w-full bg-white rounded-full origin-center"
+              />
+              <motion.span
+                initial={false}
+                animate={
+                  isOpen ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }
+                }
+                transition={{ duration: 0.2 }}
+                className="block h-0.5 w-full bg-white rounded-full"
+              />
+              <motion.span
+                initial={false}
+                animate={
+                  isOpen
+                    ? { rotate: -45, y: -7, backgroundColor: "rgb(225, 6, 0)" }
+                    : { rotate: 0, y: 0 }
+                }
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="block h-0.5 w-full bg-white rounded-full origin-center"
+              />
+            </div>
           </button>
         </nav>
       </div>

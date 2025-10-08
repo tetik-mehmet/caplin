@@ -8,7 +8,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10">
           <div className="relative w-full h-full">
             <Image
-              src="/arka.png"
+              src="/deneme.avif"
               alt="HERO arkaplanı"
               fill
               sizes="100vw"
