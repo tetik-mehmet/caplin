@@ -35,6 +35,7 @@ export default function AdminTekliflerPage() {
 
   useEffect(() => {
     fetchTeklifler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Çıkış yap
