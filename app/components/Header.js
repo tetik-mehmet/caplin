@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -25,11 +26,19 @@ export default function Header() {
     >
       <div className="container-px">
         <nav className="flex h-16 sm:h-20 items-center justify-between">
-          {/* Anasayfa Linki */}
-          <Link href="/" className="group flex-shrink-0">
-            <span className="text-lg sm:text-xl font-bold text-white group-hover:text-accent transition-colors">
-              Anasayfa
-            </span>
+          {/* Logo */}
+          <Link
+            href="/"
+            className="group flex-shrink-0 relative h-12 sm:h-16 w-auto"
+          >
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={200}
+              height={64}
+              className="h-full w-auto object-contain transition-opacity group-hover:opacity-80 rounded-lg"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

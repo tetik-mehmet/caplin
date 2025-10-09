@@ -64,6 +64,164 @@ export default function Home() {
         {/* Demo görsel alanı kaldırıldı */}
       </section>
 
+      {/* REFERANS PROJE */}
+      <section className="container-px py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          {/* Başlık */}
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs sm:text-sm font-medium uppercase tracking-wider mb-4">
+              Referans Projelerimiz
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              Savunma Sanayisinde{" "}
+              <span className="text-accent">Öncü Çözümler</span>
+            </h2>
+          </div>
+
+          {/* Proje Kartı */}
+          <div className="relative group">
+            {/* Ana Kart */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-accent/20 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(225,6,0,0.3)]">
+              {/* Arka Plan Efekti */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(225,6,0,0.2),transparent_70%)]" />
+              </div>
+
+              {/* Grid Deseni */}
+              <div
+                className="absolute inset-0 opacity-[0.03]"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                }}
+              />
+
+              <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 sm:p-12">
+                {/* Sol Taraf - Müşteri Logo ve Bilgi */}
+                <div className="flex flex-col justify-center space-y-6">
+                  {/* Müşteri Logosu */}
+                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-white/95 rounded-2xl p-6 shadow-xl ring-2 ring-accent/30 transition-all duration-300 hover:ring-accent/60 hover:scale-105">
+                    <Image
+                      src="/referanslar/bogazici.avif"
+                      alt="Boğaziçi Savunma"
+                      fill
+                      className="object-contain p-4"
+                    />
+                  </div>
+
+                  {/* Proje Detayları */}
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                        Radar Sistemi Prototipi
+                      </h3>
+                      <p className="text-accent font-semibold text-lg">
+                        Boğaziçi Savunma Sanayi
+                      </p>
+                    </div>
+
+                    <p className="text-gray-300 leading-relaxed">
+                      Savunma sanayi sektörünün önde gelen firmalarından biri
+                      için ürettiğimiz yüksek hassasiyetli radar sistemi
+                      prototipi. Proje, ileri teknoloji 3D baskı yöntemleri ve
+                      hassas mühendislik çalışması ile hayata geçirildi.
+                    </p>
+
+                    {/* Özellikler */}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                        Yüksek Hassasiyet
+                      </span>
+                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                        Savunma Sanayi
+                      </span>
+                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                        Prototip Üretim
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sağ Taraf - Proje Görselleri */}
+                <div className="flex flex-col gap-6 items-center justify-center">
+                  {/* İlk Görsel */}
+                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:scale-105">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/proje1.png"
+                        alt="Radar Sistemi"
+                        fill
+                        className="object-cover drop-shadow-2xl"
+                      />
+                    </div>
+
+                    {/* Dekoratif Köşe Elemanları */}
+                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-accent/60" />
+                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-accent/60" />
+                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-accent/60" />
+                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-accent/60" />
+                  </div>
+
+                  {/* İkinci Görsel */}
+                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:scale-105">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/prestij.png"
+                        alt="Radar Sistemi Detay"
+                        fill
+                        className="object-cover drop-shadow-2xl"
+                      />
+                    </div>
+
+                    {/* Dekoratif Köşe Elemanları */}
+                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-accent/60" />
+                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-accent/60" />
+                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-accent/60" />
+                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-accent/60" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Alt Bilgi Bandı */}
+              <div className="relative border-t border-accent/20 bg-black/40 backdrop-blur-sm px-8 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex items-center gap-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-accent">24</div>
+                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                        Saat Teslim
+                      </div>
+                    </div>
+                    <div className="h-8 w-px bg-accent/30" />
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-accent">%100</div>
+                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                        Hassasiyet
+                      </div>
+                    </div>
+                    <div className="h-8 w-px bg-accent/30" />
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-accent">A+</div>
+                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                        Kalite
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-400">
+                    <span className="text-accent font-semibold">FDM</span> ve{" "}
+                    <span className="text-accent font-semibold">Reçine</span>{" "}
+                    Teknolojisi
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Glow Efekti */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+          </div>
+        </div>
+      </section>
+
       {/* HİZMETLER */}
       <section id="ozellikler" className="container-px py-16 sm:py-20">
         <h2 className="text-2xl sm:text-3xl font-semibold">
@@ -187,9 +345,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <footer className="mt-10 py-6 text-center text-xs text-muted">
-          © {new Date().getFullYear()} Caplin. Tüm hakları saklıdır.
-        </footer>
       </section>
     </div>
   );

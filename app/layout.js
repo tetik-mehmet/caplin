@@ -1,6 +1,7 @@
 import { Montserrat, Orbitron, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <div className="pt-16 sm:pt-20">{children}</div>
+        <Footer />
       </body>
     </html>
   );
