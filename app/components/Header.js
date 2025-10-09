@@ -48,7 +48,7 @@ export default function Header() {
               { href: "/referans", label: "Referanslar" },
               { href: "/hizmetler", label: "Hizmetler" },
               { href: "#hizmet", label: "Kapsam" },
-              { href: "#teklif", label: "Teklif" },
+              { href: "/teklif", label: "Teklif" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -59,7 +59,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="#teklif"
+              href="/teklif"
               className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-white hover:bg-accent-dark transition-colors"
             >
               Teklif Al
@@ -124,7 +124,7 @@ export default function Header() {
                   { href: "/referans", label: "Referanslar" },
                   { href: "/hizmetler", label: "Hizmetler" },
                   { href: "#hizmet", label: "Kapsam" },
-                  { href: "#teklif", label: "Teklif" },
+                  { href: "/teklif", label: "Teklif" },
                 ].map((item) => (
                   <Link
                     key={item.href}
