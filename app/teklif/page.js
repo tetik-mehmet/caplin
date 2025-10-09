@@ -14,6 +14,22 @@ export default function TeklifPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Telefon numarası için özel kontrol
+    if (name === "telefon") {
+      // Sadece rakam kabul et
+      const numbersOnly = value.replace(/\D/g, "");
+      // 0 ile başlamasın ve max 10 karakter
+      if (numbersOnly.startsWith("0") || numbersOnly.length > 10) {
+        return;
+      }
+      setFormData((prev) => ({
+        ...prev,
+        [name]: numbersOnly,
+      }));
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -106,8 +122,9 @@ export default function TeklifPage() {
                   name="telefon"
                   value={formData.telefon}
                   onChange={handleChange}
-                  placeholder="0555 123 45 67"
+                  placeholder="5551234567 (10 rakam, 0 ile başlamasın)"
                   required
+                  maxLength={10}
                   className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
                 />
               </div>

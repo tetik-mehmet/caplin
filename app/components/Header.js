@@ -47,8 +47,6 @@ export default function Header() {
               { href: "/hakkimizda", label: "Hakkımızda" },
               { href: "/referans", label: "Referanslar" },
               { href: "/hizmetler", label: "Hizmetler" },
-              { href: "#hizmet", label: "Kapsam" },
-              { href: "/teklif", label: "Teklif" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -123,8 +121,6 @@ export default function Header() {
                   { href: "/hakkimizda", label: "Hakkımızda" },
                   { href: "/referans", label: "Referanslar" },
                   { href: "/hizmetler", label: "Hizmetler" },
-                  { href: "#hizmet", label: "Kapsam" },
-                  { href: "/teklif", label: "Teklif" },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -143,6 +139,13 @@ export default function Header() {
                     </motion.span>
                   </Link>
                 ))}
+                <Link
+                  href="/teklif"
+                  className="h-12 inline-flex items-center justify-center rounded-md bg-accent px-4 text-white hover:bg-accent-dark transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Teklif Al
+                </Link>
               </div>
             </div>
           </motion.div>

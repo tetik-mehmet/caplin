@@ -49,7 +49,7 @@ export default function Home() {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <a
-            href="#teklif"
+            href="/teklif"
             className="inline-flex items-center justify-center h-12 px-6 rounded-md bg-accent hover:bg-accent-dark text-white transition-colors text-sm sm:text-base"
           >
             Teklif Al
@@ -331,7 +331,7 @@ export default function Home() {
             </div>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="/teklif"
                 className="inline-flex items-center justify-center h-12 px-6 rounded-md bg-accent hover:bg-accent-dark text-white transition-colors"
               >
                 Teklif Al
