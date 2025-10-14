@@ -62,25 +62,29 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-border bg-gradient-to-b from-card via-background to-black">
-      {/* Dekoratif Üst Çizgi */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+    <footer className="relative bg-gradient-to-b from-gray-900/95 via-gray-900/90 to-gray-900/80 backdrop-blur-xl">
+      {/* Dekoratif Üst Glow Çizgisi */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
 
       {/* Ana İçerik */}
-      <div className="container-px py-12 sm:py-16">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="container-px py-16 sm:py-20">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Logo ve Açıklama */}
-          <div className="space-y-4 lg:col-span-1">
-            <Link href="/" className="inline-block">
-              <Image
-                src="/logo.png"
-                alt="Caplin Logo"
-                width={200}
-                height={70}
-                className="h-16 sm:h-20 w-auto object-contain rounded-md ring-1 ring-accent/30 hover:ring-accent/60 transition-all"
-              />
+          <div className="space-y-6 lg:col-span-1">
+            <Link href="/" className="group inline-block">
+              <div className="relative">
+                <Image
+                  src="/logo.png"
+                  alt="Caplin 3D"
+                  width={200}
+                  height={70}
+                  className="h-16 sm:h-20 w-auto object-contain rounded-lg transition-all duration-300 group-hover:scale-105"
+                />
+                {/* Logo glow efekti */}
+                <div className="absolute inset-0 bg-accent/20 rounded-lg blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
+              </div>
             </Link>
-            <p className="text-sm text-muted leading-relaxed max-w-xs">
+            <p className="text-sm text-white/70 leading-relaxed max-w-xs">
               3D Baskı, prototip ve maket üretiminde profesyonel çözümler. Hızlı
               teslimat, yüksek kalite.
             </p>
@@ -90,31 +94,50 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="group flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card hover:border-accent hover:bg-accent/10 transition-all duration-300"
+                  className="group relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 hover:bg-accent/90 border border-white/10 hover:border-accent transition-all duration-300 overflow-hidden"
                   aria-label={social.name}
                 >
-                  <div className="text-muted group-hover:text-accent transition-colors duration-300">
+                  <div className="relative z-10 text-white/70 group-hover:text-white transition-colors duration-300">
                     {social.icon}
                   </div>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Hızlı Linkler */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Hızlı Linkler
-            </h3>
-            <ul className="space-y-2.5">
+          <div className="space-y-5">
+            <div className="flex items-center gap-2">
+              <div className="h-1 w-1 rounded-full bg-accent" />
+              <h3 className="text-base font-bold text-white tracking-wide">
+                Hızlı Linkler
+              </h3>
+            </div>
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center text-sm text-muted hover:text-accent transition-colors duration-200"
+                    className="group inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-all duration-300"
                   >
-                    <span className="mr-2 h-px w-0 bg-accent transition-all duration-300 group-hover:w-4" />
-                    {link.label}
+                    <svg
+                      className="w-4 h-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {link.label}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -122,19 +145,36 @@ export default function Footer() {
           </div>
 
           {/* Hizmetler */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Hizmetlerimiz
-            </h3>
-            <ul className="space-y-2.5">
+          <div className="space-y-5">
+            <div className="flex items-center gap-2">
+              <div className="h-1 w-1 rounded-full bg-accent" />
+              <h3 className="text-base font-bold text-white tracking-wide">
+                Hizmetlerimiz
+              </h3>
+            </div>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center text-sm text-muted hover:text-accent transition-colors duration-200"
+                    className="group inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-all duration-300"
                   >
-                    <span className="mr-2 h-px w-0 bg-accent transition-all duration-300 group-hover:w-4" />
-                    {service.label}
+                    <svg
+                      className="w-4 h-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {service.label}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -142,114 +182,157 @@ export default function Footer() {
           </div>
 
           {/* İletişim Bilgileri */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              İletişim
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm">
-                <svg
-                  className="h-5 w-5 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <span className="text-muted">İstanbul, Türkiye</span>
+          <div className="space-y-5">
+            <div className="flex items-center gap-2">
+              <div className="h-1 w-1 rounded-full bg-accent" />
+              <h3 className="text-base font-bold text-white tracking-wide">
+                İletişim
+              </h3>
+            </div>
+            <ul className="space-y-4">
+              <li className="group flex items-start gap-3 text-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                  <svg
+                    className="h-5 w-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <div className="pt-1.5">
+                  <div className="text-xs text-white/50 mb-1">Adres</div>
+                  <span className="text-white/80 group-hover:text-white transition-colors">
+                    İstanbul, Türkiye
+                  </span>
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-sm">
-                <svg
-                  className="h-5 w-5 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <a
-                  href="mailto:info@caplin.com.tr"
-                  className="text-muted hover:text-accent transition-colors"
-                >
-                  info@caplin.com.tr
-                </a>
+              <li className="group flex items-start gap-3 text-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                  <svg
+                    className="h-5 w-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div className="pt-1.5">
+                  <div className="text-xs text-white/50 mb-1">E-posta</div>
+                  <a
+                    href="mailto:info@caplin.com.tr"
+                    className="text-white/80 hover:text-accent transition-colors"
+                  >
+                    info@caplin.com.tr
+                  </a>
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-sm">
-                <svg
-                  className="h-5 w-5 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                <a
-                  href="tel:+905XXXXXXXXX"
-                  className="text-muted hover:text-accent transition-colors"
-                >
-                  +90 5XX XXX XX XX
-                </a>
+              <li className="group flex items-start gap-3 text-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                  <svg
+                    className="h-5 w-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div className="pt-1.5">
+                  <div className="text-xs text-white/50 mb-1">Telefon</div>
+                  <a
+                    href="tel:+905XXXXXXXXX"
+                    className="text-white/80 hover:text-accent transition-colors"
+                  >
+                    +90 5XX XXX XX XX
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="mt-10 mb-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="relative my-12">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          </div>
+          <div className="relative flex justify-center">
+            <div className="px-4 bg-gray-900/95">
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                <div className="h-1 w-1 rounded-full bg-accent/60" />
+                <div className="h-0.5 w-0.5 rounded-full bg-accent/40" />
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Alt Bilgi */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm text-muted">
-          <p>
-            © {currentYear}{" "}
-            <span className="text-accent font-medium">Caplin</span>. Tüm hakları
-            saklıdır.
-          </p>
-          <div className="flex flex-wrap gap-6">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 border border-accent/30">
+              <span className="text-accent font-bold text-sm">C</span>
+            </div>
+            <div>
+              <p className="text-sm text-white/90">
+                © {currentYear}{" "}
+                <span className="text-accent font-bold">Caplin 3D</span>
+              </p>
+              <p className="text-xs text-white/50">Tüm hakları saklıdır.</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-6 text-sm">
             <Link
               href="#"
-              className="hover:text-accent transition-colors duration-200"
+              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
             >
+              <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Gizlilik Politikası
             </Link>
             <Link
               href="#"
-              className="hover:text-accent transition-colors duration-200"
+              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
             >
+              <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Kullanım Koşulları
             </Link>
             <Link
               href="#"
-              className="hover:text-accent transition-colors duration-200"
+              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
             >
+              <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Çerez Politikası
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Alt Dekoratif Element */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+      {/* Alt Dekoratif Glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
     </footer>
   );
 }

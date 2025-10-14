@@ -2,61 +2,54 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen flex flex-col">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* HERO */}
       <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
         <div className="absolute inset-0 -z-10">
+          {/* Arka plan resmi */}
           <div className="relative w-full h-full">
             <Image
-              src="/deneme.avif"
-              alt="HERO arkaplanı"
+              src="/arka.png"
+              alt="Arka plan"
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-cover brightness-110 contrast-105"
               priority={false}
             />
           </div>
+          {/* Hafif beyaz overlay - okunabilirlik için */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-white/35" />
+          {/* Hafif kırmızı ton overlay */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-20"
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
             style={{
               background:
-                "radial-gradient(80% 60% at 50% 30%, rgba(225,6,0,0.25), transparent 60%)",
+                "radial-gradient(70% 50% at 50% 40%, rgba(220,38,38,0.3), transparent 70%)",
             }}
           />
-          {/* Logo sol üst köşe */}
-          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-10">
-            <Image
-              src="/logo.png"
-              alt="Caplin Logo"
-              width={180}
-              height={180}
-              className="w-20 sm:w-28 md:w-36 lg:w-40 h-auto rounded-md ring-1 ring-accent/30 shadow-[0_0_18px_rgba(225,6,0,0.35)] hover:shadow-[0_0_26px_rgba(225,6,0,0.5)] transition-shadow"
-              priority
-            />
-          </div>
         </div>
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.1] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+        <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
           3D Baskı, Prototip ve Maket Üretimi
-          <span className="block text-accent">
+          <span className="block bg-gradient-to-r from-red-600 via-red-700 to-red-600 bg-clip-text text-transparent mt-2">
             Hızlı ve Profesyonel Çıktılar
           </span>
         </h1>
-        <p className="mt-5 max-w-3xl">
-          <span className="inline-block px-3 py-2 rounded-md text-sm sm:text-base text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] bg-black/35 backdrop-blur-[1px]">
+        <p className="mt-6 max-w-3xl">
+          <span className="inline-block px-5 py-3 rounded-xl text-sm sm:text-base text-gray-700 bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/50">
             Tek parça numuneden küçük seri üretime kadar; FDM ve reçine
             teknolojileriyle yüksek kalite ve hızlı teslimat.
           </span>
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-3">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <a
             href="/teklif"
-            className="inline-flex items-center justify-center h-12 px-6 rounded-md bg-accent hover:bg-accent-dark text-white transition-colors text-sm sm:text-base"
+            className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5 text-sm sm:text-base"
           >
             Teklif Al
           </a>
           <a
             href="#hizmet"
-            className="inline-flex items-center justify-center h-12 px-6 rounded-md border border-white/50 text-white/95 bg-black/35 backdrop-blur-[2px] hover:bg-black/50 hover:border-white transition-colors shadow-sm text-sm sm:text-base"
+            className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
           >
             Hizmet Kapsamı
           </a>
@@ -65,33 +58,35 @@ export default function Home() {
       </section>
 
       {/* REFERANS PROJE */}
-      <section className="container-px py-16 sm:py-20">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
           {/* Başlık */}
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs sm:text-sm font-medium uppercase tracking-wider mb-4">
+            <span className="inline-block px-5 py-2.5 rounded-full bg-red-50 border-2 border-red-200 text-red-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-sm">
               Referans Projelerimiz
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Savunma Sanayisinde{" "}
-              <span className="text-accent">Öncü Çözümler</span>
+              <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                Öncü Çözümler
+              </span>
             </h2>
           </div>
 
           {/* Proje Kartı */}
           <div className="relative group">
             {/* Ana Kart */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-accent/20 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(225,6,0,0.3)]">
+            <div className="relative overflow-hidden rounded-3xl bg-white border-2 border-gray-200 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-300">
               {/* Arka Plan Efekti */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(225,6,0,0.2),transparent_70%)]" />
+              <div className="absolute inset-0 opacity-[0.02]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.1),transparent_70%)]" />
               </div>
 
               {/* Grid Deseni */}
               <div
-                className="absolute inset-0 opacity-[0.03]"
+                className="absolute inset-0 opacity-[0.02]"
                 style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                 }}
               />
 
@@ -99,7 +94,7 @@ export default function Home() {
                 {/* Sol Taraf - Müşteri Logo ve Bilgi */}
                 <div className="flex flex-col justify-center space-y-6">
                   {/* Müşteri Logosu */}
-                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-white/95 rounded-2xl p-6 shadow-xl ring-2 ring-accent/30 transition-all duration-300 hover:ring-accent/60 hover:scale-105">
+                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-gray-50 rounded-2xl p-6 shadow-xl ring-2 ring-red-200 transition-all duration-300 hover:ring-red-400 hover:scale-105 hover:shadow-2xl">
                     <Image
                       src="/referanslar/bogazici.avif"
                       alt="Boğaziçi Savunma"
@@ -111,15 +106,15 @@ export default function Home() {
                   {/* Proje Detayları */}
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                         Radar Sistemi Prototipi
                       </h3>
-                      <p className="text-accent font-semibold text-lg">
+                      <p className="text-red-600 font-bold text-lg">
                         Boğaziçi Savunma Sanayi
                       </p>
                     </div>
 
-                    <p className="text-gray-300 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed">
                       Savunma sanayi sektörünün önde gelen firmalarından biri
                       için ürettiğimiz yüksek hassasiyetli radar sistemi
                       prototipi. Proje, ileri teknoloji 3D baskı yöntemleri ve
@@ -128,13 +123,13 @@ export default function Home() {
 
                     {/* Özellikler */}
                     <div className="flex flex-wrap gap-2 pt-2">
-                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
                         Yüksek Hassasiyet
                       </span>
-                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
                         Savunma Sanayi
                       </span>
-                      <span className="px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-medium">
+                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
                         Prototip Üretim
                       </span>
                     </div>
@@ -144,72 +139,74 @@ export default function Home() {
                 {/* Sağ Taraf - Proje Görselleri */}
                 <div className="flex flex-col gap-6 items-center justify-center">
                   {/* İlk Görsel */}
-                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:scale-105">
+                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-2xl ring-2 ring-gray-300 transition-all duration-500 hover:ring-red-400 hover:scale-105">
                     <div className="relative w-full h-full">
                       <Image
                         src="/proje1.png"
                         alt="Radar Sistemi"
                         fill
-                        className="object-cover drop-shadow-2xl"
+                        className="object-cover"
                       />
                     </div>
 
                     {/* Dekoratif Köşe Elemanları */}
-                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-accent/60" />
-                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-accent/60" />
-                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-accent/60" />
-                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-accent/60" />
+                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-red-600" />
+                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-red-600" />
+                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-red-600" />
+                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-red-600" />
                   </div>
 
                   {/* İkinci Görsel */}
-                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:scale-105">
+                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-2xl ring-2 ring-gray-300 transition-all duration-500 hover:ring-red-400 hover:scale-105">
                     <div className="relative w-full h-full">
                       <Image
                         src="/prestij.png"
                         alt="Radar Sistemi Detay"
                         fill
-                        className="object-cover drop-shadow-2xl"
+                        className="object-cover"
                       />
                     </div>
 
                     {/* Dekoratif Köşe Elemanları */}
-                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-accent/60" />
-                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-accent/60" />
-                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-accent/60" />
-                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-accent/60" />
+                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-red-600" />
+                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-red-600" />
+                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-red-600" />
+                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-red-600" />
                   </div>
                 </div>
               </div>
 
               {/* Alt Bilgi Bandı */}
-              <div className="relative border-t border-accent/20 bg-black/40 backdrop-blur-sm px-8 py-4">
+              <div className="relative border-t-2 border-gray-200 bg-gradient-to-r from-gray-50 to-red-50/30 px-8 py-6">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">24</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                      <div className="text-2xl font-bold text-red-600">24</div>
+                      <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold">
                         Saat Teslim
                       </div>
                     </div>
-                    <div className="h-8 w-px bg-accent/30" />
+                    <div className="h-8 w-px bg-red-300" />
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">%100</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                      <div className="text-2xl font-bold text-red-600">
+                        %100
+                      </div>
+                      <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold">
                         Hassasiyet
                       </div>
                     </div>
-                    <div className="h-8 w-px bg-accent/30" />
+                    <div className="h-8 w-px bg-red-300" />
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">A+</div>
-                      <div className="text-xs text-gray-400 uppercase tracking-wider">
+                      <div className="text-2xl font-bold text-red-600">A+</div>
+                      <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold">
                         Kalite
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-sm text-gray-400">
-                    <span className="text-accent font-semibold">FDM</span> ve{" "}
-                    <span className="text-accent font-semibold">Reçine</span>{" "}
+                  <div className="text-sm text-gray-700 font-medium">
+                    <span className="text-red-600 font-bold">FDM</span> ve{" "}
+                    <span className="text-red-600 font-bold">Reçine</span>{" "}
                     Teknolojisi
                   </div>
                 </div>
@@ -217,15 +214,18 @@ export default function Home() {
             </div>
 
             {/* Glow Efekti */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-red-100/0 via-red-100/20 to-red-100/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
           </div>
         </div>
       </section>
 
       {/* HİZMETLER */}
-      <section id="ozellikler" className="container-px py-16 sm:py-20">
-        <h2 className="text-2xl sm:text-3xl font-semibold">
-          Öne Çıkan <span className="text-accent">Hizmetler</span>
+      <section id="ozellikler" className="container-px py-16 sm:py-20 bg-white">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          Öne Çıkan{" "}
+          <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+            Hizmetler
+          </span>
         </h2>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -262,27 +262,27 @@ export default function Home() {
           ].map((f, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-5 flex gap-4 transition-all duration-300 motion-safe:transform-gpu shadow-sm hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:-translate-y-1 ring-1 ring-transparent hover:ring-accent/40"
+              className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-6 flex gap-4 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
             >
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(225,6,0,0.15),transparent_60%)]" />
-              <div className="shrink-0 h-12 w-12 rounded-md bg-accent/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
+              <div className="shrink-0 h-12 w-12 rounded-xl bg-red-50 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
                 <Image
                   src={f.icon}
                   alt=""
                   width={48}
                   height={48}
-                  className="w-full h-full object-contain opacity-90"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="relative">
-                <h3 className="text-base font-medium transition-colors duration-300 group-hover:text-accent">
+                <h3 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-red-600">
                   {f.title}
                 </h3>
-                <p className="mt-1 text-sm text-muted transition-colors duration-300 group-hover:text-white/80">
+                <p className="mt-1 text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-900">
                   {f.desc}
                 </p>
               </div>
-              <span className="absolute right-4 top-4 text-[10px] uppercase tracking-widest text-muted/60 transition-colors duration-300 group-hover:text-accent/80">
+              <span className="absolute right-4 top-4 text-[10px] uppercase tracking-widest text-gray-400 transition-colors duration-300 group-hover:text-red-500 font-semibold">
                 Hizmet
               </span>
             </div>
@@ -291,9 +291,15 @@ export default function Home() {
       </section>
 
       {/* HİZMET KAPSAMI */}
-      <section id="hizmet" className="container-px py-16 sm:py-20">
-        <h2 className="text-2xl sm:text-3xl font-semibold">
-          Hizmet <span className="text-accent">Kapsamı</span>
+      <section
+        id="hizmet"
+        className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          Hizmet{" "}
+          <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+            Kapsamı
+          </span>
         </h2>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -306,39 +312,39 @@ export default function Home() {
           ].map(([k, v], i) => (
             <div
               key={i}
-              className="rounded-xl border border-border p-5 bg-card"
+              className="rounded-xl border-2 border-gray-200 p-6 bg-white shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 hover:-translate-y-0.5"
             >
-              <div className="text-xs uppercase tracking-widest text-muted">
+              <div className="text-xs uppercase tracking-widest text-red-600 font-bold">
                 {k}
               </div>
-              <div className="mt-1 text-lg">{v}</div>
+              <div className="mt-2 text-lg text-gray-900 font-medium">{v}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section id="teklif" className="container-px py-16 sm:py-20">
-        <div className="rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/15 via-card to-transparent p-6 sm:p-10">
+      <section id="teklif" className="container-px py-16 sm:py-20 bg-white">
+        <div className="rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-white to-red-50/50 p-8 sm:p-12 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-semibold">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
                 İhtiyacın olan çıktıyı hemen üretelim
               </h3>
-              <p className="mt-2 text-sm text-muted max-w-xl">
+              <p className="mt-3 text-base text-gray-600 max-w-xl font-medium">
                 Dosyanı gönder, aynı gün fiyatlandırma ve hızlı teslimat.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a
                 href="/teklif"
-                className="inline-flex items-center justify-center h-12 px-6 rounded-md bg-accent hover:bg-accent-dark text-white transition-colors"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
               >
                 Teklif Al
               </a>
               <a
                 href="#hizmet"
-                className="inline-flex items-center justify-center h-12 px-6 rounded-md border border-border hover:border-accent hover:text-accent transition-colors"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 Hizmet Kapsamı
               </a>
