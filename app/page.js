@@ -9,7 +9,7 @@ export default function Home() {
           {/* Arka plan resmi */}
           <div className="relative w-full h-full">
             <Image
-              src="/arka.png"
+              src="/deneme.avif"
               alt="Arka plan"
               fill
               sizes="100vw"
@@ -237,7 +237,7 @@ export default function Home() {
             {
               title: "Reçine Baskı",
               desc: "Yüksek detaylı prototipler ve minyatürler.",
-              icon: "/globe.svg",
+              icon: "/gifler/spray.gif",
             },
             {
               title: "Maket Üretimi",
@@ -257,7 +257,7 @@ export default function Home() {
             {
               title: "Küçük Seri Üretim",
               desc: "Ön seri ve pazarlama numuneleri.",
-              icon: "/window.svg",
+              icon: "/gifler/assembly-line.gif",
             },
           ].map((f, i) => (
             <div
