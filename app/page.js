@@ -1,32 +1,79 @@
+"use client";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const backgroundImages = [
+    "/deneme.avif",
+    "/aselsan.png",
+    "/maket.png",
+    "/radar.png",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % backgroundImages.length
+        );
+        setIsTransitioning(false);
+      }, 500);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
   return (
     <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* HERO */}
       <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
         <div className="absolute inset-0 -z-10">
-          {/* Arka plan resmi */}
-          <div className="relative w-full h-full">
-            <Image
-              src="/deneme.avif"
-              alt="Arka plan"
-              fill
-              sizes="100vw"
-              className="object-cover brightness-110 contrast-105"
-              priority={false}
-            />
+          {/* Arka plan resmi - Dinamik geçiş efekti ile */}
+          <div className="relative w-full h-full overflow-hidden">
+            {backgroundImages.map((img, index) => (
+              <div
+                key={img}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  index === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt="Arka plan"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
           </div>
-          {/* Hafif beyaz overlay - okunabilirlik için */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-white/35" />
-          {/* Hafif kırmızı ton overlay */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.06]"
-            style={{
-              background:
-                "radial-gradient(70% 50% at 50% 40%, rgba(220,38,38,0.3), transparent 70%)",
-            }}
-          />
+
+          {/* Modern geçiş göstergesi */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {backgroundImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setTimeout(() => {
+                    setCurrentImageIndex(index);
+                    setIsTransitioning(false);
+                  }, 300);
+                }}
+                className={`transition-all duration-500 rounded-full ${
+                  index === currentImageIndex
+                    ? "w-8 h-2 bg-red-600 shadow-lg shadow-red-600/50"
+                    : "w-2 h-2 bg-white/60 hover:bg-white/90"
+                }`}
+                aria-label={`Resim ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
         <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
           3D Baskı, Prototip ve Maket Üretimi
