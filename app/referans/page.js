@@ -23,12 +23,6 @@ const references = [
     category: "Eğitim",
     description: "Mühendislik fakültesi araştırma projeleri",
   },
-  {
-    name: "Teknopark İstanbul",
-    image: "/referanslar/teknopark.avif",
-    category: "Inovasyon",
-    description: "Startup ve teknoloji şirketleri için hızlı prototipleme",
-  },
 ];
 
 export default function ReferansPage() {

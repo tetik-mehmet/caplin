@@ -43,9 +43,10 @@ export default function Header() {
   }, [lastScrollY, isOpen]);
 
   const navItems = [
-    { href: "/hakkimizda", label: "Hakkımızda" },
-    { href: "/referans", label: "Referanslar" },
     { href: "/hizmetler", label: "Hizmetler" },
+    { href: "/hakkimizda", label: "Hakkımızda" },
+    { href: "/projelerimiz", label: "Projelerimiz" },
+    { href: "/referans", label: "Referanslar" },
   ];
 
   return (
@@ -66,65 +67,7 @@ export default function Header() {
 
       <div className="container-px relative">
         <nav className="flex h-20 sm:h-24 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="group flex-shrink-0 relative z-10">
-            <div className="relative">
-              <Image
-                src="/logo.png"
-                alt="Caplin 3D"
-                width={180}
-                height={60}
-                className="h-14 sm:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 rounded-lg"
-                priority
-              />
-              {/* Logo glow efekti */}
-              <div className="absolute inset-0 bg-accent/20 rounded-lg blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-3">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group relative px-4 py-2 text-sm lg:text-base font-medium text-white/80 hover:text-white transition-all duration-300"
-              >
-                <span className="relative z-10">{item.label}</span>
-                {/* Hover background */}
-                <span className="absolute inset-0 rounded-lg bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
-                {/* Aktif indicator */}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-accent/0 via-accent to-accent/0 group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
-
-            {/* CTA Button */}
-            <Link
-              href="/teklif"
-              className="group relative ml-2 lg:ml-4 inline-flex items-center justify-center h-11 px-6 rounded-xl bg-gradient-to-br from-accent via-accent to-accent/90 text-white font-medium overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(225,6,0,0.4)] hover:scale-105"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Teklif Al
-                <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </span>
-              {/* Animated gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Mobilde solda */}
           <button
             className="md:hidden relative inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/40 hover:bg-white/10 transition-all duration-300"
             onClick={() => setIsOpen((v) => !v)}
@@ -167,6 +110,67 @@ export default function Header() {
               />
             </div>
           </button>
+
+          {/* Logo - Desktop'ta solda, mobilde sağda */}
+          <Link
+            href="/"
+            className="group flex-shrink-0 relative z-10 md:order-first"
+          >
+            <div className="relative">
+              <Image
+                src="/logo.png"
+                alt="Caplin 3D"
+                width={180}
+                height={60}
+                className="h-14 sm:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 rounded-lg"
+                priority
+              />
+              {/* Logo glow efekti */}
+              <div className="absolute inset-0 bg-accent/20 rounded-lg blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
+            </div>
+          </Link>
+
+          {/* Desktop Navigation - Desktop'ta sağda */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative px-4 py-2 text-sm lg:text-base font-medium text-white/80 hover:text-white transition-all duration-300"
+              >
+                <span className="relative z-10">{item.label}</span>
+                {/* Hover background */}
+                <span className="absolute inset-0 rounded-lg bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+                {/* Aktif indicator */}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-accent/0 via-accent to-accent/0 group-hover:w-full transition-all duration-300" />
+              </Link>
+            ))}
+
+            {/* CTA Button */}
+            <Link
+              href="/teklif"
+              className="group relative ml-2 lg:ml-4 inline-flex items-center justify-center h-11 px-6 rounded-xl bg-gradient-to-br from-accent via-accent to-accent/90 text-white font-medium overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(225,6,0,0.4)] hover:scale-105"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Teklif Al
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </span>
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+            </Link>
+          </div>
         </nav>
       </div>
 
@@ -185,8 +189,8 @@ export default function Header() {
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
@@ -209,7 +213,7 @@ export default function Header() {
                 ))}
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   className="mt-2"

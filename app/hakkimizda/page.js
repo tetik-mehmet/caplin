@@ -6,16 +6,16 @@ import { motion } from "framer-motion";
 
 export default function HakkimizdaPage() {
   return (
-    <div className="font-sans min-h-screen flex flex-col">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* HERO SECTION */}
       <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
         <div className="absolute inset-0 -z-10">
-          <div className="relative w-full h-full bg-gradient-to-b from-accent/5 via-transparent to-transparent" />
+          <div className="relative w-full h-full bg-gradient-to-b from-red-50/30 via-transparent to-transparent" />
           <div
-            className="pointer-events-none absolute inset-0 opacity-20"
+            className="pointer-events-none absolute inset-0 opacity-10"
             style={{
               background:
-                "radial-gradient(80% 60% at 50% 30%, rgba(225,6,0,0.25), transparent 60%)",
+                "radial-gradient(80% 60% at 50% 30%, rgba(220,38,38,0.15), transparent 60%)",
             }}
           />
         </div>
@@ -26,18 +26,20 @@ export default function HakkimizdaPage() {
           transition={{ duration: 0.6 }}
           className="max-w-4xl"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.1] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
             Hayalden Gerçeğe
-            <span className="block text-accent mt-2">Caplin3D</span>
+            <span className="block bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent mt-2">
+              Caplin3D
+            </span>
           </h1>
-          <p className="mt-6 text-base sm:text-lg text-muted max-w-2xl mx-auto">
+          <p className="mt-6 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-medium">
             3D yazıcı teknolojilerinin sınırlarını zorlayan bir yenilik merkezi
           </p>
         </motion.div>
       </section>
 
       {/* ABOUT CONTENT CARDS */}
-      <section className="container-px py-16 sm:py-20">
+      <section className="container-px py-16 sm:py-20 bg-white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Card 1 - Misyon */}
           <motion.div
@@ -45,14 +47,14 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-8 transition-all duration-300 motion-safe:transform-gpu shadow-sm hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:-translate-y-1 ring-1 ring-transparent hover:ring-accent/40"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(225,6,0,0.15),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-50 mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
                 <svg
-                  className="w-7 h-7 text-accent"
+                  className="w-7 h-7 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -66,11 +68,11 @@ export default function HakkimizdaPage() {
                 </svg>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 transition-colors duration-300 group-hover:text-accent">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-gray-900 transition-colors duration-300 group-hover:text-red-600">
                 Yenilik Merkezi
               </h3>
 
-              <p className="text-sm sm:text-base text-muted leading-relaxed transition-colors duration-300 group-hover:text-white/80">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-900">
                 Caplin3D, hayal gücünü gerçeğe dönüştürmek için 3D yazıcı
                 teknolojilerinin sınırlarını zorlayan bir yenilik merkezi olarak
                 doğdu. Sektördeki derin bilgi birikimimiz ve tutkumuz, bizi
@@ -86,14 +88,14 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-8 transition-all duration-300 motion-safe:transform-gpu shadow-sm hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:-translate-y-1 ring-1 ring-transparent hover:ring-accent/40"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(225,6,0,0.15),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-50 mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
                 <svg
-                  className="w-7 h-7 text-accent"
+                  className="w-7 h-7 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -107,11 +109,11 @@ export default function HakkimizdaPage() {
                 </svg>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 transition-colors duration-300 group-hover:text-accent">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-gray-900 transition-colors duration-300 group-hover:text-red-600">
                 Uzman Ekip
               </h3>
 
-              <p className="text-sm sm:text-base text-muted leading-relaxed transition-colors duration-300 group-hover:text-white/80">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-900">
                 Her biri alanında uzman ekibimizle, bireysel kullanıcıların ve
                 kurumsal firmaların ihtiyaçlarına özel çözümler sunuyoruz.
                 Prototip üretiminden seri üretime, eğitimden danışmanlığa kadar
@@ -127,14 +129,14 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-8 transition-all duration-300 motion-safe:transform-gpu shadow-sm hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:-translate-y-1 ring-1 ring-transparent hover:ring-accent/40"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(225,6,0,0.15),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-50 mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
                 <svg
-                  className="w-7 h-7 text-accent"
+                  className="w-7 h-7 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -148,11 +150,11 @@ export default function HakkimizdaPage() {
                 </svg>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 transition-colors duration-300 group-hover:text-accent">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-gray-900 transition-colors duration-300 group-hover:text-red-600">
                 Vizyonumuz
               </h3>
 
-              <p className="text-sm sm:text-base text-muted leading-relaxed transition-colors duration-300 group-hover:text-white/80">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-900">
                 Caplin3D olarak, müşteri memnuniyetini işimizin merkezine
                 koyuyor ve teknoloji ile yaratıcılığı birleştirerek daha
                 sürdürülebilir ve yenilikçi bir dünya için çalışıyoruz. Geleceği
@@ -165,15 +167,19 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-accent/5 to-transparent">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-semibold text-center mb-12"
+            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900"
           >
-            Neden <span className="text-accent">Caplin3D</span>?
+            Neden{" "}
+            <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+              Caplin3D
+            </span>
+            ?
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -189,15 +195,15 @@ export default function HakkimizdaPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative group rounded-xl border border-border bg-card p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:border-accent/40"
+                className="relative group rounded-xl border-2 border-gray-200 bg-white p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
               >
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/5 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-50/50 via-transparent to-transparent" />
 
                 <div className="relative">
-                  <div className="text-3xl sm:text-4xl font-bold text-accent mb-2 transition-transform duration-300 group-hover:scale-110">
+                  <div className="text-3xl sm:text-4xl font-bold text-red-600 mb-2 transition-transform duration-300 group-hover:scale-110">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-muted uppercase tracking-wider">
+                  <div className="text-sm text-gray-600 uppercase tracking-wider font-semibold">
                     {stat.label}
                   </div>
                 </div>
@@ -208,13 +214,13 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* VALUES SECTION */}
-      <section className="container-px py-16 sm:py-20">
+      <section className="container-px py-16 sm:py-20 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-semibold text-center mb-12"
+            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900"
           >
             Değerlerimiz
           </motion.h2>
@@ -248,13 +254,13 @@ export default function HakkimizdaPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card p-6 flex gap-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:border-accent/40"
+                className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-6 flex gap-4 transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
               >
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(225,6,0,0.15),transparent_60%)]" />
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
-                <div className="shrink-0 h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <div className="shrink-0 h-12 w-12 rounded-lg bg-red-50 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
                   <svg
-                    className="w-6 h-6 text-accent"
+                    className="w-6 h-6 text-red-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -269,10 +275,10 @@ export default function HakkimizdaPage() {
                 </div>
 
                 <div className="relative">
-                  <h3 className="text-lg font-semibold mb-2 transition-colors duration-300 group-hover:text-accent">
+                  <h3 className="text-lg font-bold mb-2 text-gray-900 transition-colors duration-300 group-hover:text-red-600">
                     {value.title}
                   </h3>
-                  <p className="text-sm text-muted transition-colors duration-300 group-hover:text-white/80">
+                  <p className="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-900">
                     {value.desc}
                   </p>
                 </div>
@@ -283,31 +289,31 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="container-px py-16 sm:py-20">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/15 via-card to-transparent p-8 sm:p-12"
+          className="max-w-4xl mx-auto rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-white to-red-50/50 p-8 sm:p-12 shadow-2xl"
         >
           <div className="text-center">
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
               Projeniz için hazır mısınız?
             </h3>
-            <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto mb-8">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto mb-8 font-medium">
               Hayalinizdeki projeyi birlikte gerçeğe dönüştürelim. Uzman
               ekibimiz size en iyi çözümü sunmak için burada.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/#teklif"
-                className="inline-flex items-center justify-center h-12 px-8 rounded-md bg-accent hover:bg-accent-dark text-white transition-colors"
+                href="/teklif"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
               >
                 Hemen Teklif Al
               </Link>
               <Link
                 href="/#hizmet"
-                className="inline-flex items-center justify-center h-12 px-8 rounded-md border border-border hover:border-accent hover:text-accent transition-colors"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 Hizmetlerimizi İncele
               </Link>
@@ -315,7 +321,7 @@ export default function HakkimizdaPage() {
           </div>
         </motion.div>
 
-        <footer className="mt-10 py-6 text-center text-xs text-muted">
+        <footer className="mt-10 py-6 text-center text-xs text-gray-600 font-medium">
           © {new Date().getFullYear()} Caplin3D. Tüm hakları saklıdır.
         </footer>
       </section>

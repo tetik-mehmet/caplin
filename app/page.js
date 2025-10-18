@@ -1,107 +1,51 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const backgroundImages = [
-    "/deneme.avif",
-    "/aselsan.png",
-    "/maket.png",
-    "/radar.png",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex(
-          (prevIndex) => (prevIndex + 1) % backgroundImages.length
-        );
-        setIsTransitioning(false);
-      }, 500);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [backgroundImages.length]);
-
   return (
     <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* HERO */}
-      <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
+      <section className="relative isolate flex flex-col items-center justify-center text-center min-h-[85vh] sm:min-h-[90vh] overflow-hidden">
+        {/* Arka plan resmi container */}
         <div className="absolute inset-0 -z-10">
-          {/* Arka plan resmi - Dinamik geçiş efekti ile */}
-          <div className="relative w-full h-full overflow-hidden">
-            {backgroundImages.map((img, index) => (
-              <div
-                key={img}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  index === currentImageIndex ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt="Arka plan"
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </div>
-            ))}
-          </div>
+          {/* Arka plan resmi */}
+          <Image
+            src="/yeni_arka.png"
+            alt="Arka plan"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority
+          />
 
-          {/* Modern geçiş göstergesi */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            {backgroundImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsTransitioning(true);
-                  setTimeout(() => {
-                    setCurrentImageIndex(index);
-                    setIsTransitioning(false);
-                  }, 300);
-                }}
-                className={`transition-all duration-500 rounded-full ${
-                  index === currentImageIndex
-                    ? "w-8 h-2 bg-red-600 shadow-lg shadow-red-600/50"
-                    : "w-2 h-2 bg-white/60 hover:bg-white/90"
-                }`}
-                aria-label={`Resim ${index + 1}`}
-              />
-            ))}
+          {/* Gradient overlay - Okunabilirlik için */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+        </div>
+
+        {/* İçerik */}
+        <div className="relative z-10 container-px px-4 py-16 sm:py-20 flex flex-col items-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-white drop-shadow-2xl">
+            3D BASKI VE MAKET
+            <span className="block bg-gradient-to-r from-red-400 via-red-500 to-red-400 bg-clip-text text-transparent mt-2 drop-shadow-lg">
+              ÜRETİMİNDE GÜVENİLİR ÇÖZÜMLER
+            </span>
+          </h1>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 px-4">
+            <a
+              href="/teklif"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/50 hover:shadow-xl hover:shadow-red-600/60 hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              Teklif Al
+            </a>
+            <a
+              href="#hizmet"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-white text-white font-semibold bg-white/10 backdrop-blur-sm hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              Hizmet Kapsamı
+            </a>
           </div>
         </div>
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
-          3D Baskı, Prototip ve Maket Üretimi
-          <span className="block bg-gradient-to-r from-red-600 via-red-700 to-red-600 bg-clip-text text-transparent mt-2">
-            Hızlı ve Profesyonel Çıktılar
-          </span>
-        </h1>
-        <p className="mt-6 max-w-3xl">
-          <span className="inline-block px-5 py-3 rounded-xl text-sm sm:text-base text-gray-700 bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/50">
-            Tek parça numuneden küçük seri üretime kadar; FDM ve reçine
-            teknolojileriyle yüksek kalite ve hızlı teslimat.
-          </span>
-        </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <a
-            href="/teklif"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5 text-sm sm:text-base"
-          >
-            Teklif Al
-          </a>
-          <a
-            href="#hizmet"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
-          >
-            Hizmet Kapsamı
-          </a>
-        </div>
-        {/* Demo görsel alanı kaldırıldı */}
       </section>
 
       {/* REFERANS PROJE */}
@@ -278,7 +222,7 @@ export default function Home() {
           {[
             {
               title: "3D Baskı (FDM)",
-              desc: "PLA, PETG, ABS ile fonksiyonel parçalar.",
+              desc: "Mühendislik filamentleri ile fonksiyonel parçalar",
               icon: "/gifler/3d-printer.gif",
             },
             {
@@ -293,7 +237,7 @@ export default function Home() {
             },
             {
               title: "Hızlı Teslim",
-              desc: "24–72 saat içinde üretim ve gönderim.",
+              desc: "Hızlı teslimat garantisi",
               icon: "/gifler/fast.gif",
             },
             {
@@ -342,31 +286,134 @@ export default function Home() {
         id="hizmet"
         className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">
           Hizmet{" "}
           <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
             Kapsamı
           </span>
         </h2>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            ["Maks Boyut", "220 × 220 × 250 mm (tek parça)"],
-            ["Çözünürlük", "0.05–0.3 mm (FDM), 0.025 mm (reçine)"],
-            ["Malzemeler", "PLA, PETG, ABS, Resin"],
-            ["Renkler", "Siyah, beyaz, kırmızı ve talebe göre"],
-            ["Teslim Süresi", "24–72 saat"],
-            ["Son İşlem", "Zımpara, astar, boya (opsiyonel)"],
-          ].map(([k, v], i) => (
-            <div
-              key={i}
-              className="rounded-xl border-2 border-gray-200 p-6 bg-white shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <div className="text-xs uppercase tracking-widest text-red-600 font-bold">
-                {k}
-              </div>
-              <div className="mt-2 text-lg text-gray-900 font-medium">{v}</div>
+
+        {/* 3D Yazıcı Eğitimi Kartı */}
+        <div className="max-w-4xl mx-auto">
+          <div className="group relative overflow-hidden rounded-3xl border-2 border-gray-200 bg-white shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-400">
+            {/* Arka Plan Efekti */}
+            <div className="absolute inset-0 opacity-[0.03]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.15),transparent_70%)]" />
             </div>
-          ))}
+
+            <div className="relative p-8 sm:p-12">
+              {/* Başlık ve İkon */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+                <div className="shrink-0 h-20 w-20 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg">
+                  <Image
+                    src="/gifler/3d-printer.gif"
+                    alt="3D Yazıcı Eğitimi"
+                    width={64}
+                    height={64}
+                    className="w-16 h-16 object-contain"
+                  />
+                </div>
+                <div className="text-center sm:text-left flex-1">
+                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                    3D Yazıcı Eğitimi
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    Profesyonel 3D baskı teknolojilerini öğrenin
+                  </p>
+                </div>
+              </div>
+
+              {/* Eğitim İçeriği */}
+              <div className="space-y-6">
+                <p className="text-base text-gray-700 leading-relaxed">
+                  3D yazıcı teknolojilerini A&apos;dan Z&apos;ye öğrenmek
+                  isteyenler için kapsamlı eğitim programı. Hem teorik bilgi hem
+                  de pratik uygulama içeren eğitimimizle, kendi projelerinizi
+                  hayata geçirebilecek seviyeye ulaşın.
+                </p>
+
+                {/* Eğitim Detayları */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
+                    <div>
+                      <div className="font-bold text-gray-900">
+                        FDM Teknolojisi
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Temel ve ileri seviye baskı teknikleri
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
+                    <div>
+                      <div className="font-bold text-gray-900">
+                        Reçine Baskı
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Yüksek detay ve hassas üretim
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
+                    <div>
+                      <div className="font-bold text-gray-900">
+                        Model Hazırlama
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Slicing ve baskı ayarları optimizasyonu
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
+                    <div>
+                      <div className="font-bold text-gray-900">
+                        Pratik Uygulamalar
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Gerçek projeler üzerinde çalışma
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Özellikler Badge'leri */}
+                <div className="flex flex-wrap gap-2 pt-4">
+                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
+                    👨‍🏫 Uzman Eğitmenler
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
+                    📜 Sertifika
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
+                    🛠️ Uygulamalı Eğitim
+                  </span>
+                </div>
+              </div>
+
+              {/* Alt Bilgi ve CTA */}
+              <div className="mt-8 pt-8 border-t-2 border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-center sm:text-left">
+                  <div className="text-sm text-gray-600 mb-1">
+                    Eğitim Süresi
+                  </div>
+                  <div className="text-2xl font-bold text-red-600">16 Saat</div>
+                </div>
+                <a
+                  href="/teklif"
+                  className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
+                >
+                  Detaylı Bilgi Al
+                </a>
+              </div>
+            </div>
+
+            {/* Glow Efekti */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-red-100/0 via-red-100/20 to-red-100/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+          </div>
         </div>
       </section>
 
