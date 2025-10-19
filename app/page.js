@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100">
       {/* HERO */}
       <section className="relative isolate flex flex-col items-center justify-center text-center min-h-[85vh] sm:min-h-[90vh] overflow-hidden">
         {/* Arka plan resmi container */}
@@ -30,7 +30,6 @@ export default function Home() {
               ÜRETİMİNDE GÜVENİLİR ÇÖZÜMLER
             </span>
           </h1>
-
           <div className="mt-10 flex flex-col sm:flex-row gap-4 px-4">
             <a
               href="/teklif"
@@ -49,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* REFERANS PROJE */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto">
           {/* Başlık */}
           <div className="text-center mb-12">
@@ -67,7 +66,7 @@ export default function Home() {
           {/* Proje Kartı */}
           <div className="relative group">
             {/* Ana Kart */}
-            <div className="relative overflow-hidden rounded-3xl bg-white border-2 border-gray-200 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-300">
+            <div className="relative overflow-hidden rounded-3xl bg-gray-50 border-2 border-gray-300 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-300">
               {/* Arka Plan Efekti */}
               <div className="absolute inset-0 opacity-[0.02]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.1),transparent_70%)]" />
@@ -85,7 +84,7 @@ export default function Home() {
                 {/* Sol Taraf - Müşteri Logo ve Bilgi */}
                 <div className="flex flex-col justify-center space-y-6">
                   {/* Müşteri Logosu */}
-                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-gray-50 rounded-2xl p-6 shadow-xl ring-2 ring-red-200 transition-all duration-300 hover:ring-red-400 hover:scale-105 hover:shadow-2xl">
+                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-white rounded-2xl p-6 shadow-xl ring-2 ring-red-200 transition-all duration-300 hover:ring-red-400 hover:scale-105 hover:shadow-2xl">
                     <Image
                       src="/referanslar/bogazici.avif"
                       alt="Boğaziçi Savunma"
@@ -168,7 +167,7 @@ export default function Home() {
               </div>
 
               {/* Alt Bilgi Bandı */}
-              <div className="relative border-t-2 border-gray-200 bg-gradient-to-r from-gray-50 to-red-50/30 px-8 py-6">
+              <div className="relative border-t-2 border-gray-300 bg-gradient-to-r from-gray-100 to-red-50/40 px-8 py-6">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-6">
                     <div className="text-center">
@@ -211,7 +210,10 @@ export default function Home() {
       </section>
 
       {/* HİZMETLER */}
-      <section id="ozellikler" className="container-px py-16 sm:py-20 bg-white">
+      <section
+        id="ozellikler"
+        className="container-px py-16 sm:py-20 bg-gray-100"
+      >
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
           Öne Çıkan{" "}
           <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
@@ -253,7 +255,7 @@ export default function Home() {
           ].map((f, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-6 flex gap-4 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
+              className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gray-50 p-6 flex gap-4 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
               <div className="shrink-0 h-12 w-12 rounded-xl bg-red-50 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-100">
@@ -284,7 +286,7 @@ export default function Home() {
       {/* HİZMET KAPSAMI */}
       <section
         id="hizmet"
-        className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white"
+        className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50"
       >
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">
           Hizmet{" "}
@@ -295,7 +297,7 @@ export default function Home() {
 
         {/* 3D Yazıcı Eğitimi Kartı */}
         <div className="max-w-4xl mx-auto">
-          <div className="group relative overflow-hidden rounded-3xl border-2 border-gray-200 bg-white shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-400">
+          <div className="group relative overflow-hidden rounded-3xl border-2 border-gray-300 bg-gray-50 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-400">
             {/* Arka Plan Efekti */}
             <div className="absolute inset-0 opacity-[0.03]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.15),transparent_70%)]" />
@@ -395,7 +397,7 @@ export default function Home() {
               </div>
 
               {/* Alt Bilgi ve CTA */}
-              <div className="mt-8 pt-8 border-t-2 border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="mt-8 pt-8 border-t-2 border-gray-300 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-center sm:text-left">
                   <div className="text-sm text-gray-600 mb-1">
                     Eğitim Süresi
@@ -418,8 +420,8 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section id="teklif" className="container-px py-16 sm:py-20 bg-white">
-        <div className="rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-white to-red-50/50 p-8 sm:p-12 shadow-2xl">
+      <section id="teklif" className="container-px py-16 sm:py-20 bg-gray-50">
+        <div className="rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-gray-50 to-red-50/50 p-8 sm:p-12 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">

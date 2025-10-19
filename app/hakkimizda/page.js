@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function HakkimizdaPage() {
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100">
       {/* HERO SECTION */}
       <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
         <div className="absolute inset-0 -z-10">
@@ -39,7 +39,7 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* ABOUT CONTENT CARDS */}
-      <section className="container-px py-16 sm:py-20 bg-white">
+      <section className="container-px py-16 sm:py-20 bg-gray-100">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Card 1 - Misyon */}
           <motion.div
@@ -47,7 +47,7 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gray-50 p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
@@ -88,7 +88,7 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gray-50 p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
@@ -129,7 +129,7 @@ export default function HakkimizdaPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
+            className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gray-50 p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
@@ -167,7 +167,7 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -195,7 +195,7 @@ export default function HakkimizdaPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative group rounded-xl border-2 border-gray-200 bg-white p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
+                className="relative group rounded-xl border-2 border-gray-300 bg-gray-50 p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
               >
                 <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-50/50 via-transparent to-transparent" />
 
@@ -214,7 +214,7 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* VALUES SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-white">
+      <section className="container-px py-16 sm:py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -254,7 +254,7 @@ export default function HakkimizdaPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-6 flex gap-4 transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
+                className="group relative overflow-hidden rounded-xl border-2 border-gray-300 bg-gray-50 p-6 flex gap-4 transition-all duration-300 hover:shadow-lg hover:border-red-300 hover:-translate-y-0.5"
               >
                 <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
 
@@ -289,12 +289,12 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-white to-red-50/50 p-8 sm:p-12 shadow-2xl"
+          className="max-w-4xl mx-auto rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-gray-50 to-red-50/50 p-8 sm:p-12 shadow-2xl"
         >
           <div className="text-center">
             <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
@@ -313,7 +313,7 @@ export default function HakkimizdaPage() {
               </Link>
               <Link
                 href="/#hizmet"
-                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-gray-50 hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 Hizmetlerimizi İncele
               </Link>
