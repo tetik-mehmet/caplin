@@ -182,11 +182,10 @@ export default function HakkimizdaPage() {
             ?
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { number: "7/24", label: "Destek" },
               { number: "100+", label: "Tamamlanan Proje" },
-              { number: "24-72", label: "Saatte Teslimat" },
               { number: "99%", label: "Müşteri Memnuniyeti" },
             ].map((stat, i) => (
               <motion.div
@@ -304,26 +303,16 @@ export default function HakkimizdaPage() {
               Hayalinizdeki projeyi birlikte gerçeğe dönüştürelim. Uzman
               ekibimiz size en iyi çözümü sunmak için burada.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/teklif"
                 className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
               >
                 Hemen Teklif Al
               </Link>
-              <Link
-                href="/#hizmet"
-                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-gray-50 hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              >
-                Hizmetlerimizi İncele
-              </Link>
             </div>
           </div>
         </motion.div>
-
-        <footer className="mt-10 py-6 text-center text-xs text-gray-600 font-medium">
-          © {new Date().getFullYear()} Caplin3D. Tüm hakları saklıdır.
-        </footer>
       </section>
     </div>
   );

@@ -284,11 +284,7 @@ export default function HizmetlerPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="border-t border-border pt-6"
-          >
-            <p className="text-xs text-muted">
-              © {new Date().getFullYear()} Caplin3D. Tüm hakları saklıdır.
-            </p>
-          </motion.div>
+          ></motion.div>
         </div>
       </footer>
     </div>
