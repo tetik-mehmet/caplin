@@ -52,9 +52,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Başlık */}
           <div className="text-center mb-12">
-            <span className="inline-block px-5 py-2.5 rounded-full bg-red-50 border-2 border-red-200 text-red-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-sm">
-              Referans Projelerimiz
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Savunma Sanayisinde{" "}
               <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
@@ -83,25 +80,12 @@ export default function Home() {
               <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 sm:p-12">
                 {/* Sol Taraf - Müşteri Logo ve Bilgi */}
                 <div className="flex flex-col justify-center space-y-6">
-                  {/* Müşteri Logosu */}
-                  <div className="relative w-48 h-48 mx-auto lg:mx-0 bg-white rounded-2xl p-6 shadow-xl ring-2 ring-red-200 transition-all duration-300 hover:ring-red-400 hover:scale-105 hover:shadow-2xl">
-                    <Image
-                      src="/referanslar/bogazici.avif"
-                      alt="Boğaziçi Savunma"
-                      fill
-                      className="object-contain p-4"
-                    />
-                  </div>
-
                   {/* Proje Detayları */}
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                         Radar Sistemi Prototipi
                       </h3>
-                      <p className="text-red-600 font-bold text-lg">
-                        Boğaziçi Savunma Sanayi
-                      </p>
                     </div>
 
                     <p className="text-gray-600 leading-relaxed">
@@ -145,24 +129,6 @@ export default function Home() {
                     <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-red-600" />
                     <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-red-600" />
                   </div>
-
-                  {/* İkinci Görsel */}
-                  <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-2xl ring-2 ring-gray-300 transition-all duration-500 hover:ring-red-400 hover:scale-105">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src="/prestij.png"
-                        alt="Radar Sistemi Detay"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-
-                    {/* Dekoratif Köşe Elemanları */}
-                    <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-red-600" />
-                    <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-red-600" />
-                    <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-red-600" />
-                    <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-red-600" />
-                  </div>
                 </div>
               </div>
 
@@ -170,13 +136,6 @@ export default function Home() {
               <div className="relative border-t-2 border-gray-300 bg-gradient-to-r from-gray-100 to-red-50/40 px-8 py-6">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-6">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-red-600">24</div>
-                      <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold">
-                        Saat Teslim
-                      </div>
-                    </div>
-                    <div className="h-8 w-px bg-red-300" />
                     <div className="text-center">
                       <div className="text-2xl font-bold text-red-600">
                         %100
@@ -238,9 +197,9 @@ export default function Home() {
               icon: "/gifler/maket.gif",
             },
             {
-              title: "Hızlı Teslim",
-              desc: "Hızlı teslimat garantisi",
-              icon: "/gifler/fast.gif",
+              title: "3D Yazıcı Eğitimi",
+              desc: "Profesyonel 3D baskı teknolojileri eğitimi",
+              icon: "/gifler/teacher.gif",
             },
             {
               title: "Tasarım Desteği",
@@ -283,138 +242,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HİZMET KAPSAMI */}
-      <section
-        id="hizmet"
-        className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">
-          Hizmet{" "}
-          <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-            Kapsamı
-          </span>
-        </h2>
-
-        {/* 3D Yazıcı Eğitimi Kartı */}
-        <div className="max-w-4xl mx-auto">
-          <div className="group relative overflow-hidden rounded-3xl border-2 border-gray-300 bg-gray-50 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-400">
-            {/* Arka Plan Efekti */}
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.15),transparent_70%)]" />
-            </div>
-
-            <div className="relative p-8 sm:p-12">
-              {/* Başlık ve İkon */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
-                <div className="shrink-0 h-20 w-20 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg">
-                  <Image
-                    src="/gifler/3d-printer.gif"
-                    alt="3D Yazıcı Eğitimi"
-                    width={64}
-                    height={64}
-                    className="w-16 h-16 object-contain"
-                  />
+      {/* ÖZELLİKLER */}
+      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Hızlı Teslimat */}
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
                 </div>
-                <div className="text-center sm:text-left flex-1">
-                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
-                    3D Yazıcı Eğitimi
-                  </h3>
-                  <p className="text-lg text-gray-600">
-                    Profesyonel 3D baskı teknolojilerini öğrenin
-                  </p>
-                </div>
-              </div>
-
-              {/* Eğitim İçeriği */}
-              <div className="space-y-6">
-                <p className="text-base text-gray-700 leading-relaxed">
-                  3D yazıcı teknolojilerini A&apos;dan Z&apos;ye öğrenmek
-                  isteyenler için kapsamlı eğitim programı. Hem teorik bilgi hem
-                  de pratik uygulama içeren eğitimimizle, kendi projelerinizi
-                  hayata geçirebilecek seviyeye ulaşın.
+                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                  Hızlı Teslimat
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Aynı gün fiyatlandırma ve hızlı üretim süreci
                 </p>
-
-                {/* Eğitim Detayları */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <div className="flex items-start gap-3">
-                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
-                    <div>
-                      <div className="font-bold text-gray-900">
-                        FDM Teknolojisi
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Temel ve ileri seviye baskı teknikleri
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
-                    <div>
-                      <div className="font-bold text-gray-900">
-                        Reçine Baskı
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Yüksek detay ve hassas üretim
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
-                    <div>
-                      <div className="font-bold text-gray-900">
-                        Model Hazırlama
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Slicing ve baskı ayarları optimizasyonu
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="shrink-0 w-2 h-2 rounded-full bg-red-600 mt-2" />
-                    <div>
-                      <div className="font-bold text-gray-900">
-                        Pratik Uygulamalar
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Gerçek projeler üzerinde çalışma
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Özellikler Badge'leri */}
-                <div className="flex flex-wrap gap-2 pt-4">
-                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
-                    👨‍🏫 Uzman Eğitmenler
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
-                    📜 Sertifika
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-sm font-bold">
-                    🛠️ Uygulamalı Eğitim
-                  </span>
-                </div>
-              </div>
-
-              {/* Alt Bilgi ve CTA */}
-              <div className="mt-8 pt-8 border-t-2 border-gray-300 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-center sm:text-left">
-                  <div className="text-sm text-gray-600 mb-1">
-                    Eğitim Süresi
-                  </div>
-                  <div className="text-2xl font-bold text-red-600">16 Saat</div>
-                </div>
-                <a
-                  href="/teklif"
-                  className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
-                >
-                  Detaylı Bilgi Al
-                </a>
               </div>
             </div>
 
-            {/* Glow Efekti */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-red-100/0 via-red-100/20 to-red-100/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+            {/* Yüksek Kalite */}
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                  Yüksek Kalite
+                </h3>
+                <p className="text-sm text-gray-600">
+                  En kaliteli malzemeler ve hassas üretim teknikleri
+                </p>
+              </div>
+            </div>
+
+            {/* Profesyonel Üretim */}
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                  Profesyonel Üretim
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Uzman ekip ve modern ekipmanlarla kusursuz sonuçlar
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -437,12 +351,6 @@ export default function Home() {
                 className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
               >
                 Teklif Al
-              </a>
-              <a
-                href="#hizmet"
-                className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-gray-900 text-gray-900 font-semibold bg-white hover:bg-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              >
-                Hizmet Kapsamı
               </a>
             </div>
           </div>

@@ -80,33 +80,34 @@ export default function ReferansPage() {
 
       {/* STATISTICS SECTION */}
       <section className="container-px pb-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { number: "50+", label: "Kurumsal İşbirliği" },
-            { number: "200+", label: "Tamamlanan Proje" },
-            { number: "10+", label: "Üniversite" },
-            { number: "15+", label: "Teknopark" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="relative group rounded-xl border border-border bg-card/50 backdrop-blur-sm p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:border-accent/40"
-            >
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/5 via-transparent to-transparent" />
+        <div className="max-w-6xl mx-auto flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl">
+            {[
+              { number: "50+", label: "Kurumsal İşbirliği" },
+              { number: "200+", label: "Tamamlanan Proje" },
+              { number: "10+", label: "Üniversite" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative group rounded-xl border border-border bg-card/50 backdrop-blur-sm p-6 text-center overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)] hover:border-accent/40"
+              >
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/5 via-transparent to-transparent" />
 
-              <div className="relative">
-                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2 transition-transform duration-300 group-hover:scale-110">
-                  {stat.number}
+                <div className="relative">
+                  <div className="text-3xl sm:text-4xl font-bold text-accent mb-2 transition-transform duration-300 group-hover:scale-110">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted uppercase tracking-wider">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm text-muted uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
