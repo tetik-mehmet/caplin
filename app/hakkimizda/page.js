@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function HakkimizdaPage() {
   const { scrollYProgress } = useScroll();
@@ -55,6 +56,37 @@ export default function HakkimizdaPage() {
     },
   };
 
+  // Generate random animation seeds only on the client after mount to avoid hydration mismatches
+  const [heroParticles, setHeroParticles] = useState([]);
+  const [statsBlobs, setStatsBlobs] = useState([]);
+  const [ctaParticles, setCtaParticles] = useState([]);
+
+  useEffect(() => {
+    setHeroParticles(
+      Array.from({ length: 5 }, () => ({
+        xStartPercent: Math.random() * 100,
+        yStartPx: Math.random() * 300,
+        xDrift: Math.random() * 50 - 25,
+      }))
+    );
+
+    setStatsBlobs(
+      Array.from({ length: 3 }, () => ({
+        x1: Math.random() * 100,
+        y1: Math.random() * 100,
+        x2: Math.random() * 100,
+        y2: Math.random() * 100,
+      }))
+    );
+
+    setCtaParticles(
+      Array.from({ length: 8 }, () => ({
+        xStartPercent: Math.random() * 100,
+        yStartPercent: Math.random() * 100,
+      }))
+    );
+  }, []);
+
   return (
     <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100 overflow-hidden">
       {/* HERO SECTION */}
@@ -82,17 +114,17 @@ export default function HakkimizdaPage() {
           />
 
           {/* Floating particles */}
-          {[...Array(5)].map((_, i) => (
+          {heroParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-red-400/20 rounded-full"
               initial={{
-                x: Math.random() * 100 + "%",
-                y: Math.random() * 300,
+                x: p.xStartPercent + "%",
+                y: p.yStartPx,
               }}
               animate={{
                 y: [0, -100, 0],
-                x: [0, Math.random() * 50 - 25, 0],
+                x: [0, p.xDrift, 0],
                 opacity: [0.2, 0.5, 0.2],
               }}
               transition={{
@@ -275,17 +307,17 @@ export default function HakkimizdaPage() {
       <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(3)].map((_, i) => (
+          {statsBlobs.map((b, i) => (
             <motion.div
               key={i}
               className="absolute w-64 h-64 bg-red-100/20 rounded-full blur-3xl"
               initial={{
-                x: Math.random() * 100 + "%",
-                y: Math.random() * 100 + "%",
+                x: b.x1 + "%",
+                y: b.y1 + "%",
               }}
               animate={{
-                x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
-                y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                x: [b.x1 + "%", b.x2 + "%"],
+                y: [b.y1 + "%", b.y2 + "%"],
               }}
               transition={{
                 duration: 10 + i * 2,
@@ -653,13 +685,13 @@ export default function HakkimizdaPage() {
       <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50 relative overflow-hidden">
         {/* Animated particles in background */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => (
+          {ctaParticles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-red-400/30 rounded-full"
               initial={{
-                x: Math.random() * 100 + "%",
-                y: Math.random() * 100 + "%",
+                x: p.xStartPercent + "%",
+                y: p.yStartPercent + "%",
               }}
               animate={{
                 y: [0, -30, 0],

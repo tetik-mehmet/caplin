@@ -45,9 +45,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-gray-900/95 via-gray-900/90 to-gray-900/80 backdrop-blur-xl">
-      {/* Dekoratif Üst Glow Çizgisi */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+    <footer className="relative bg-gradient-to-b from-slate-50/95 via-slate-100/92 to-slate-200/90 backdrop-blur-xl">
+      {/* Üst Ayrım: Kalın nötr gradient + ince accent çizgi */}
+      <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-transparent via-gray-300/70 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
 
       {/* Ana İçerik */}
       <div className="container-px py-16 sm:py-20">
@@ -67,7 +68,7 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-accent/20 rounded-lg blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
               </div>
             </Link>
-            <p className="text-sm text-white/70 leading-relaxed max-w-xs">
+            <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
               3D Baskı, prototip ve maket üretiminde profesyonel çözümler. Hızlı
               teslimat, yüksek kalite.
             </p>
@@ -77,14 +78,14 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="group relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 hover:bg-accent/90 border border-white/10 hover:border-accent transition-all duration-300 overflow-hidden"
+                  className="group relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/60 hover:bg-white/80 border border-gray-300/50 hover:border-accent transition-all duration-300 overflow-hidden"
                   aria-label={social.name}
                 >
-                  <div className="relative z-10 text-white/70 group-hover:text-white transition-colors duration-300">
+                  <div className="relative z-10 text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
                     {social.icon}
                   </div>
                   {/* Hover glow */}
-                  <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300" />
                 </a>
               ))}
             </div>
@@ -94,7 +95,7 @@ export default function Footer() {
           <div className="space-y-5">
             <div className="flex items-center gap-2">
               <div className="h-1 w-1 rounded-full bg-accent" />
-              <h3 className="text-base font-bold text-white tracking-wide">
+              <h3 className="text-base font-bold text-gray-900 tracking-wide">
                 Hızlı Linkler
               </h3>
             </div>
@@ -103,7 +104,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-all duration-300"
+                    className="group inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-all duration-300"
                   >
                     <svg
                       className="w-4 h-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
@@ -131,13 +132,13 @@ export default function Footer() {
           <div className="space-y-5">
             <div className="flex items-center gap-2">
               <div className="h-1 w-1 rounded-full bg-accent" />
-              <h3 className="text-base font-bold text-white tracking-wide">
+              <h3 className="text-base font-bold text-gray-900 tracking-wide">
                 İletişim
               </h3>
             </div>
             <ul className="space-y-4">
               <li className="group flex items-start gap-3 text-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/60 border border-gray-300/50 group-hover:border-accent/50 transition-all duration-300">
                   <svg
                     className="h-5 w-5 text-accent"
                     fill="none"
@@ -159,14 +160,14 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div className="pt-1.5">
-                  <div className="text-xs text-white/50 mb-1">Adres</div>
-                  <span className="text-white/80 group-hover:text-white transition-colors">
+                  <div className="text-xs text-gray-500 mb-1">Adres</div>
+                  <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                     İstanbul, Türkiye
                   </span>
                 </div>
               </li>
               <li className="group flex items-start gap-3 text-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/60 border border-gray-300/50 group-hover:border-accent/50 transition-all duration-300">
                   <svg
                     className="h-5 w-5 text-accent"
                     fill="none"
@@ -182,17 +183,17 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div className="pt-1.5">
-                  <div className="text-xs text-white/50 mb-1">E-posta</div>
+                  <div className="text-xs text-gray-500 mb-1">E-posta</div>
                   <a
                     href="mailto:info@caplin.com.tr"
-                    className="text-white/80 hover:text-accent transition-colors"
+                    className="text-gray-700 hover:text-accent transition-colors"
                   >
                     info@caplin.com.tr
                   </a>
                 </div>
               </li>
               <li className="group flex items-start gap-3 text-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/60 border border-gray-300/50 group-hover:border-accent/50 transition-all duration-300">
                   <svg
                     className="h-5 w-5 text-accent"
                     fill="none"
@@ -208,10 +209,10 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div className="pt-1.5">
-                  <div className="text-xs text-white/50 mb-1">Telefon</div>
+                  <div className="text-xs text-gray-500 mb-1">Telefon</div>
                   <a
                     href="tel:+905XXXXXXXXX"
-                    className="text-white/80 hover:text-accent transition-colors"
+                    className="text-gray-700 hover:text-accent transition-colors"
                   >
                     +90 5XX XXX XX XX
                   </a>
@@ -224,10 +225,10 @@ export default function Footer() {
         {/* Divider */}
         <div className="relative my-12">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300/40 to-transparent" />
           </div>
           <div className="relative flex justify-center">
-            <div className="px-4 bg-gray-900/95">
+            <div className="px-4 bg-transparent">
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                 <div className="h-1 w-1 rounded-full bg-accent/60" />
@@ -244,31 +245,31 @@ export default function Footer() {
               <span className="text-accent font-bold text-sm">C</span>
             </div>
             <div>
-              <p className="text-sm text-white/90">
+              <p className="text-sm text-gray-800">
                 © {currentYear}{" "}
                 <span className="text-accent font-bold">Caplin 3D</span>
               </p>
-              <p className="text-xs text-white/50">Tüm hakları saklıdır.</p>
+              <p className="text-xs text-gray-500">Tüm hakları saklıdır.</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-6 text-sm">
             <Link
               href="#"
-              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
+              className="group inline-flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Gizlilik Politikası
             </Link>
             <Link
               href="#"
-              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
+              className="group inline-flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Kullanım Koşulları
             </Link>
             <Link
               href="#"
-              className="group inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors duration-300"
+              className="group inline-flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Çerez Politikası
@@ -278,7 +279,7 @@ export default function Footer() {
       </div>
 
       {/* Alt Dekoratif Glow */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
     </footer>
   );
 }

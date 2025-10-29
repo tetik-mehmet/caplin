@@ -199,10 +199,15 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            initial={{ opacity: 0, scaleY: 0, y: -20 }}
+            animate={{ opacity: 1, scaleY: 1, y: 0 }}
+            exit={{ opacity: 0, scaleY: 0, y: -20 }}
+            transition={{
+              duration: 0.5,
+              ease: [0.23, 1, 0.32, 1],
+              opacity: { duration: 0.3 },
+            }}
+            style={{ transformOrigin: "top" }}
             className="md:hidden overflow-hidden border-t border-gray-300/30 bg-gradient-to-b from-white/98 to-gray-50/95 backdrop-blur-xl"
           >
             {/* Üst dekoratif çizgi */}
