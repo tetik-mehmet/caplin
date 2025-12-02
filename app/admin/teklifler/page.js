@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function AdminTekliflerPage() {
   const [teklifler, setTeklifler] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("hepsi"); // hepsi, bekliyor, yanıtlandı
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
   // Teklifleri getir
@@ -73,24 +75,33 @@ export default function AdminTekliflerPage() {
   };
 
   // Teklif sil
-  const deleteTeklif = async (id) => {
-    if (!confirm("Bu teklifi silmek istediğinizden emin misiniz?")) {
-      return;
-    }
-
+  const deleteTeklif = async () => {
+    if (!deleteTarget) return;
+    setIsDeleting(true);
     try {
-      const response = await fetch(`/api/admin/teklifler?id=${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `/api/admin/teklifler?id=${deleteTarget._id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       const data = await response.json();
 
       if (data.success) {
-        setTeklifler((prev) => prev.filter((t) => t._id !== id));
+        setTeklifler((prev) => prev.filter((t) => t._id !== deleteTarget._id));
+        setDeleteTarget(null);
       }
     } catch (error) {
       console.error("Teklif silme hatası:", error);
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const closeDeleteModal = () => {
+    if (isDeleting) return;
+    setDeleteTarget(null);
   };
 
   // Filtreleme
@@ -389,7 +400,7 @@ export default function AdminTekliflerPage() {
                         : "Bekliyor Olarak İşaretle"}
                     </button>
                     <button
-                      onClick={() => deleteTeklif(teklif._id)}
+                      onClick={() => setDeleteTarget(teklif)}
                       className="px-4 py-2 bg-red-500/10 border border-red-500/30 text-red-400 rounded-lg hover:bg-red-500/20 transition-all duration-300 text-sm font-medium"
                     >
                       Sil
@@ -401,6 +412,77 @@ export default function AdminTekliflerPage() {
           </motion.div>
         )}
       </div>
+
+      <AnimatePresence>
+        {deleteTarget && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div
+              className="absolute inset-0 bg-black/60 backdrop-blur"
+              onClick={closeDeleteModal}
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="relative z-10 w-full max-w-md rounded-2xl bg-card border border-border/60 p-6 shadow-2xl"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 9v4m0 4h.01M4.318 4.318l15.364 15.364M7.78 7.78l-3.46 3.46a2 2 0 000 2.828l5.657 5.657a2 2 0 002.828 0l3.46-3.46M16.242 16.24L21 11.485a2 2 0 000-2.828L15.343 2.999a2 2 0 00-2.828 0L9.06 6.454"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-lg">
+                    Silme Onayı
+                  </p>
+                  <p className="text-sm text-gray-400">
+                    {deleteTarget.email} kullanıcısına ait teklifi silmek
+                    üzeresiniz.
+                  </p>
+                </div>
+              </div>
+              <div className="bg-background/60 border border-border/40 rounded-xl p-4 mb-6 max-h-32 overflow-y-auto">
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  {deleteTarget.mesaj}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={deleteTeklif}
+                  disabled={isDeleting}
+                  className="flex-1 px-4 py-3 rounded-lg bg-red-500/20 border border-red-500/40 text-red-300 font-medium hover:bg-red-500/30 transition disabled:opacity-50"
+                >
+                  {isDeleting ? "Siliniyor..." : "Evet, Sil"}
+                </button>
+                <button
+                  onClick={closeDeleteModal}
+                  className="flex-1 px-4 py-3 rounded-lg bg-card/60 border border-border/60 text-gray-200 font-medium hover:bg-card transition"
+                >
+                  Vazgeç
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
