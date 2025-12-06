@@ -53,7 +53,10 @@ export const metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/logo.png", sizes: "any" },
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
+    ],
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
@@ -106,7 +109,13 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Caplin 3D Teknoloji",
   url: "https://caplin3dteknoloji.com",
-  logo: "https://caplin3dteknoloji.com/logo.png",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://caplin3dteknoloji.com/logo.png",
+    width: 512,
+    height: 512,
+  },
+  image: "https://caplin3dteknoloji.com/logo.png",
   description:
     "Yüksek hassasiyetli 3D baskı, prototip üretimi, maket imalatı ve 3D yazıcı eğitimi hizmetleri sunan teknoloji şirketi",
   address: {
@@ -140,6 +149,8 @@ const websiteSchema = {
     logo: {
       "@type": "ImageObject",
       url: "https://caplin3dteknoloji.com/logo.png",
+      width: 512,
+      height: 512,
     },
   },
 };
@@ -148,6 +159,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
+        {/* Favicon Links */}
+        <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo.png" />
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
