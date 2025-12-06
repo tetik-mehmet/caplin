@@ -38,7 +38,7 @@ export default function Home() {
               Teklif Al
             </a>
             <a
-              href="#hizmet"
+              href="/hizmetler"
               className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-white text-white font-semibold bg-white/10 backdrop-blur-sm hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm sm:text-base"
             >
               Hizmet Kapsamı

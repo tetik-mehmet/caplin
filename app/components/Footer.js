@@ -2,9 +2,41 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
 export default function Footer() {
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const modalContentRef = useRef(null);
   const currentYear = new Date().getFullYear();
+
+  // ESC tuşu ile modalı kapatma
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && isPrivacyModalOpen) {
+        setIsPrivacyModalOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isPrivacyModalOpen]);
+
+  // Modal açıkken body scroll'unu engelleme
+  useEffect(() => {
+    if (isPrivacyModalOpen) {
+      document.body.style.overflow = "hidden";
+      // Modal içeriğini en üste kaydır
+      setTimeout(() => {
+        if (modalContentRef.current) {
+          modalContentRef.current.scrollTop = 0;
+        }
+      }, 10);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isPrivacyModalOpen]);
 
   const quickLinks = [
     { href: "/", label: "Ana Sayfa" },
@@ -202,9 +234,14 @@ export default function Footer() {
                 </div>
                 <div className="pt-1.5">
                   <div className="text-xs text-gray-500 mb-1">Adres</div>
-                  <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
-                    İstanbul, Türkiye
-                  </span>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Akşemsettin+Mah.+1086+Sokak+16/B"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-700 hover:text-accent transition-colors"
+                  >
+                    Akşemsettin Mah. 1086 Sokak 16/B
+                  </a>
                 </div>
               </li>
               <li className="group flex items-start gap-3 text-sm">
@@ -252,10 +289,10 @@ export default function Footer() {
                 <div className="pt-1.5">
                   <div className="text-xs text-gray-500 mb-1">Telefon</div>
                   <a
-                    href="tel:+905XXXXXXXXX"
+                    href="tel:+905435518811"
                     className="text-gray-700 hover:text-accent transition-colors"
                   >
-                    +90 5XX XXX XX XX
+                    0543 551 88 11
                   </a>
                 </div>
               </li>
@@ -294,19 +331,266 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex flex-wrap gap-6 text-sm">
-            <Link
-              href="#"
-              className="group inline-flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            <button
+              onClick={() => setIsPrivacyModalOpen(true)}
+              className="group inline-flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
               Gizlilik Politikası
-            </Link>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Alt Dekoratif Glow */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
+
+      {/* Gizlilik Politikası Modal */}
+      {isPrivacyModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+          onClick={() => setIsPrivacyModalOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-white rounded-xl sm:rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden transition-all duration-300 transform flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex-shrink-0 bg-gradient-to-r from-slate-50 to-slate-100 border-b-2 border-gray-300 px-6 py-4 sm:px-8 sm:py-5 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 border border-accent/30">
+                    <svg
+                      className="h-5 w-5 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                    Gizlilik Politikası
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setIsPrivacyModalOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-200/50 hover:text-gray-900 transition-all duration-300"
+                  aria-label="Kapat"
+                >
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div
+              ref={modalContentRef}
+              className="overflow-y-auto flex-1 min-h-0 px-4 py-4 sm:px-8 sm:py-8"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              <div className="prose prose-sm sm:prose-base max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-li:text-gray-700 space-y-6">
+                <p className="text-base leading-relaxed text-gray-700">
+                  Bu Gizlilik Politikası, caplin3dteknoloji.com
+                  (&quot;Site&quot;) üzerinden kullanıcılar tarafından
+                  paylaşılan kişisel bilgilerin hangi amaçlarla toplandığını,
+                  nasıl kullanıldığını ve hangi koşullarda korunduğunu
+                  açıklamaktadır. Sitemizi ziyaret ederek veya iletişim formunu
+                  kullanarak bu politikada belirtilen uygulamaları kabul etmiş
+                  sayılırsınız.
+                </p>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      1
+                    </span>
+                    Toplanan Bilgiler
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Sitemiz aracılığıyla kullanıcıların gönüllü olarak ilettiği
+                    aşağıdaki bilgiler toplanmaktadır:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                    <li>E-posta adresi</li>
+                    <li>Talep edilen ürün ve ürün detayları</li>
+                    <li>Kullanıcı tarafından yazılan ek açıklamalar (varsa)</li>
+                  </ul>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Bunların dışında sitemiz kullanıcıdan herhangi bir kişisel
+                    veriyi otomatik olarak toplamaz.
+                  </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      2
+                    </span>
+                    Bilgilerin Kullanım Amaçları
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Toplanan bilgiler aşağıdaki amaçlarla kullanılmaktadır:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                    <li>
+                      Kullanıcının ilettiği ürün talebi hakkında geri dönüş
+                      yapmak,
+                    </li>
+                    <li>
+                      Ürün detaylarını değerlendirmek ve kullanıcıyla iletişime
+                      geçmek,
+                    </li>
+                    <li>
+                      Kullanıcı talebini işleme almak ve gerekli
+                      bilgilendirmeleri sağlamak.
+                    </li>
+                  </ul>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Kullanıcı tarafından sağlanan bilgiler, bu amaçlar dışında
+                    kesinlikle kullanılmaz.
+                  </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      3
+                    </span>
+                    Bilgilerin Üçüncü Taraflarla Paylaşımı
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    caplin3dteknoloji.com üzerinden toplanan kişisel veriler:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                    <li>Üçüncü şahıslarla paylaşılmaz,</li>
+                    <li>Satılmaz veya kiralanmaz.</li>
+                  </ul>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Yalnızca yasal zorunluluklar kapsamında, resmi makamların
+                    talebi doğrultusunda ilgili kurumlarla paylaşılabilir.
+                  </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      4
+                    </span>
+                    Veri Güvenliği
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Kullanıcı tarafından iletilen bilgiler, kayıp, kötüye
+                    kullanım veya yetkisiz erişime karşı güncel teknik ve idari
+                    güvenlik önlemleriyle korunmaktadır. Sadece yetkili personel
+                    ilgili verilere erişebilir.
+                  </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      5
+                    </span>
+                    Çerez Kullanımı
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Sitemizde kullanıcı deneyimini geliştirmek amacıyla temel
+                    çerezler kullanılabilir. Ancak kişisel veri niteliği taşıyan
+                    veya kullanıcı davranışını takip eden çerezler
+                    kullanılmamaktadır.
+                  </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      6
+                    </span>
+                    Kullanıcı Hakları
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Kullanıcılar aşağıdaki haklara sahiptir:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                    <li>Kendi verilerine erişme hakkı,</li>
+                    <li>Verilerinin silinmesini talep etme hakkı,</li>
+                    <li>
+                      Verilerinin hangi amaçlarla işlendiğine ilişkin bilgi alma
+                      hakkı.
+                    </li>
+                  </ul>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Bu hakların kullanımı için bizimle iletişime geçebilirsiniz:
+                  </p>
+                  <a
+                    href="mailto:info@caplin.com.tr"
+                    className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-medium transition-colors mt-2"
+                  >
+                    <svg
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    info@caplin.com.tr
+                  </a>
+                </section>
+
+                <section className="space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
+                      7
+                    </span>
+                    Gizlilik Politikasında Değişiklikler
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    caplin3dteknoloji.com, bu Gizlilik Politikasını gerektiğinde
+                    güncelleme hakkını saklı tutar. Güncellemeler sitede
+                    yayınlandığı anda geçerlilik kazanır.
+                  </p>
+                </section>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex-shrink-0 bg-gradient-to-r from-slate-50 to-slate-100 border-t-2 border-gray-300 px-6 py-4 sm:px-8 sm:py-5 rounded-b-2xl">
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setIsPrivacyModalOpen(false)}
+                  className="px-6 py-2.5 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Kapat
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }

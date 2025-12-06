@@ -8,39 +8,18 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Scroll durumunu kontrol et
+      // Sadece scroll durumunu kontrol et (gölge ve stil için)
       setIsScrolled(currentScrollY > 20);
-
-      // Mobil menü açıksa her zaman görünür tut
-      if (isOpen) {
-        setIsVisible(true);
-        setLastScrollY(currentScrollY);
-        return;
-      }
-
-      // Scroll yönünü kontrol et
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        // Yukarı scroll veya sayfanın üstündeyse - göster
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Aşağı scroll ve sayfanın aşağısındaysa - gizle
-        setIsVisible(false);
-      }
-
-      setLastScrollY(currentScrollY);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY, isOpen]);
+  }, []);
 
   const navItems = [
     { href: "/hizmetler", label: "Hizmetler" },
@@ -51,13 +30,12 @@ export default function Header() {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 backdrop-blur-xl bg-gradient-to-b from-white/95 via-gray-50/92 to-gray-100/88 border-b ${
+      initial={{ y: 0 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 backdrop-blur-xl bg-gradient-to-b from-white/95 via-gray-50/92 to-gray-100/88 ${
         isScrolled
-          ? "border-gray-300/40 shadow-[0_8px_32px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.03)]"
-          : "border-gray-200/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
+          ? "shadow-[0_8px_32px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.03)]"
+          : "shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
       }`}
     >
       {/* Dekoratif üst glow çizgisi - daha minimal */}
@@ -67,10 +45,18 @@ export default function Header() {
         }`}
       />
 
-      {/* Alt dekoratif çizgi */}
+      {/* Modern gölgeli alt çizgi - tam genişlik */}
       <div
-        className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-gradient-to-r from-transparent via-gray-400/20 to-transparent transition-all duration-700 ${
-          isScrolled ? "w-1/3" : "w-1/2"
+        className={`absolute bottom-0 inset-x-0 h-[1px] transition-all duration-700 ${
+          isScrolled
+            ? "bg-gradient-to-r from-transparent via-gray-300/60 to-transparent shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]"
+            : "bg-gradient-to-r from-transparent via-gray-300/40 to-transparent shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+        }`}
+      />
+      {/* İkinci katman - daha yumuşak gölge efekti */}
+      <div
+        className={`absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-gray-200/30 to-transparent transition-opacity duration-700 ${
+          isScrolled ? "opacity-100" : "opacity-60"
         }`}
       />
 
@@ -195,20 +181,24 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Mobile Menu - Lüks minimal tasarım */}
-      <AnimatePresence>
+      {/* Mobile Menu - Optimize edilmiş smooth animasyon */}
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scaleY: 0, y: -20 }}
-            animate={{ opacity: 1, scaleY: 1, y: 0 }}
-            exit={{ opacity: 0, scaleY: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{
-              duration: 0.5,
-              ease: [0.23, 1, 0.32, 1],
-              opacity: { duration: 0.3 },
+              duration: 0.35,
+              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 0.25, ease: "easeOut" },
+              height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
             }}
-            style={{ transformOrigin: "top" }}
-            className="md:hidden overflow-hidden border-t border-gray-300/30 bg-gradient-to-b from-white/98 to-gray-50/95 backdrop-blur-xl"
+            style={{
+              willChange: "height, opacity",
+              transform: "translateZ(0)",
+            }}
+            className="md:hidden overflow-hidden border-t border-gray-300/30 bg-gradient-to-b from-white/98 to-gray-50/95"
           >
             {/* Üst dekoratif çizgi */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
@@ -218,20 +208,25 @@ export default function Header() {
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.href}
-                    initial={{ opacity: 0, y: -15 }}
+                    initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.08, duration: 0.4 }}
+                    transition={{
+                      delay: index * 0.05,
+                      duration: 0.3,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    style={{ willChange: "transform, opacity" }}
                   >
                     <Link
                       href={item.href}
-                      className="group relative flex items-center justify-between h-16 px-6 rounded-2xl bg-gradient-to-br from-white/80 via-gray-50/60 to-white/40 hover:from-white/90 hover:to-gray-50/70 border border-gray-200/50 hover:border-accent/30 transition-all duration-500 backdrop-blur-sm shadow-sm hover:shadow-md overflow-hidden"
+                      className="group relative flex items-center justify-between h-16 px-6 rounded-2xl bg-gradient-to-br from-white/80 via-gray-50/60 to-white/40 hover:from-white/90 hover:to-gray-50/70 border border-gray-200/50 hover:border-accent/30 transition-colors duration-300 shadow-sm hover:shadow-md overflow-hidden"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span className="relative z-10 text-gray-600 group-hover:text-gray-900 font-semibold transition-all duration-500 tracking-wide group-hover:tracking-wider text-[15px]">
+                      <span className="relative z-10 text-gray-600 group-hover:text-gray-900 font-semibold transition-colors duration-300 tracking-wide group-hover:tracking-wider text-[15px]">
                         {item.label}
                       </span>
                       <motion.div
-                        className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100/50 group-hover:bg-accent/10 transition-colors duration-500"
+                        className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100/50 group-hover:bg-accent/10 transition-colors duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -239,30 +234,35 @@ export default function Header() {
                           className="text-gray-400 group-hover:text-accent font-light text-lg"
                           initial={{ x: -3 }}
                           whileHover={{ x: 0 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           →
                         </motion.span>
                       </motion.div>
                       {/* Hover gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </Link>
                   </motion.div>
                 ))}
 
                 <motion.div
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35, duration: 0.4 }}
+                  transition={{
+                    delay: navItems.length * 0.05 + 0.1,
+                    duration: 0.3,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  style={{ willChange: "transform, opacity" }}
                   className="mt-4"
                 >
                   <Link
                     href="/teklif"
-                    className="group relative flex items-center justify-center h-16 px-8 rounded-2xl bg-gradient-to-br from-accent via-accent to-accent/95 text-white font-bold overflow-hidden transition-all duration-500 hover:shadow-[0_8px_40px_rgba(225,6,0,0.4),0_0_60px_rgba(225,6,0,0.2)] active:scale-[0.98] tracking-wide"
+                    className="group relative flex items-center justify-center h-16 px-8 rounded-2xl bg-gradient-to-br from-accent via-accent to-accent/95 text-white font-bold overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(225,6,0,0.4),0_0_60px_rgba(225,6,0,0.2)] active:scale-[0.98] tracking-wide"
                     onClick={() => setIsOpen(false)}
                   >
                     <span className="relative z-10 flex items-center gap-3 text-base">
-                      <span className="transition-all duration-300 group-hover:tracking-wider">
+                      <span className="transition-all duration-200 group-hover:tracking-wider">
                         Teklif Al
                       </span>
                       <motion.svg
@@ -272,7 +272,7 @@ export default function Header() {
                         stroke="currentColor"
                         initial={{ x: 0 }}
                         whileHover={{ x: 3 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <path
                           strokeLinecap="round"
@@ -283,9 +283,9 @@ export default function Header() {
                       </motion.svg>
                     </span>
                     {/* Animasyonlu overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
                     {/* İç glow */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/10 to-transparent transition-opacity duration-500" />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/10 to-transparent transition-opacity duration-300" />
                   </Link>
                 </motion.div>
               </div>
