@@ -182,7 +182,7 @@ export default function RootLayout({ children }) {
         className={`${montserrat.variable} ${orbitron.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <Header />
-        <div className="pt-16 sm:pt-20">{children}</div>
+        <div className="pt-20 sm:pt-[76px] lg:pt-[80px]">{children}</div>
         <Footer />
       </body>
     </html>

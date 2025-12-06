@@ -3,11 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -22,21 +24,17 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { href: "/hizmetler", label: "Hizmetler" },
-    { href: "/hakkimizda", label: "Hakkımızda" },
-    { href: "/projelerimiz", label: "Projelerimiz" },
-    { href: "/referans", label: "Referanslar" },
+    { href: "/hizmetler", label: "Hizmetler", isPrimary: true },
+    { href: "/hakkimizda", label: "Hakkımızda", isPrimary: false },
+    { href: "/projelerimiz", label: "Projelerimiz", isPrimary: true },
+    { href: "/referans", label: "Referanslar", isPrimary: false },
   ];
 
   return (
     <motion.header
       initial={{ y: 0 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 backdrop-blur-xl bg-gradient-to-b from-white/95 via-gray-50/92 to-gray-100/88 ${
-        isScrolled
-          ? "shadow-[0_8px_32px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.03)]"
-          : "shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
-      }`}
+      className="fixed top-0 inset-x-0 z-50 bg-white shadow-[0_2px_20px_rgba(0,0,0,0.05)] transition-all duration-300"
     >
       {/* Dekoratif üst glow çizgisi - daha minimal */}
       <div
@@ -61,10 +59,10 @@ export default function Header() {
       />
 
       <div className="container-px relative">
-        <nav className="flex h-24 sm:h-28 lg:h-32 items-center justify-between">
+        <nav className="flex h-20 sm:h-[76px] lg:h-[80px] items-center justify-between">
           {/* Mobile Menu Button - Lüks minimal tasarım */}
           <button
-            className="md:hidden relative inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/60 backdrop-blur-md border border-gray-300/50 hover:border-accent/40 hover:bg-white/80 transition-all duration-500 shadow-sm hover:shadow-md"
+            className="md:hidden relative inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/60 backdrop-blur-md border border-gray-300/50 hover:border-accent/40 hover:bg-white/80 hover:opacity-90 active:scale-[0.98] transition-all duration-200 shadow-sm hover:shadow-md"
             onClick={() => setIsOpen((v) => !v)}
             aria-label="Menüyü Aç/Kapat"
           >
@@ -109,7 +107,7 @@ export default function Header() {
           {/* Logo - Daha sofistike glow efekti */}
           <Link
             href="/"
-            className="group flex-shrink-0 relative z-10 md:order-first"
+            className="group flex-shrink-0 relative z-10 md:order-first md:mr-12 lg:mr-14 flex items-center gap-3 lg:gap-4"
           >
             <div className="relative">
               <Image
@@ -117,52 +115,95 @@ export default function Header() {
                 alt="Caplin 3D"
                 width={280}
                 height={112}
-                className="h-20 sm:h-24 lg:h-28 w-auto object-contain transition-all duration-500 group-hover:scale-[1.03] drop-shadow-sm"
+                className="h-14 sm:h-16 lg:h-[72px] w-auto object-contain transition-all duration-500 group-hover:scale-[1.03] drop-shadow-sm"
                 priority
               />
               {/* Çoklu katmanlı glow efekti */}
               <div className="absolute inset-0 bg-accent/10 rounded-lg blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
               <div className="absolute inset-0 bg-accent/5 rounded-lg blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
             </div>
+            {/* Slogan - Modern ve dikkat çekici */}
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="hidden sm:block relative"
+            >
+              <div className="relative">
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] bg-clip-text text-transparent tracking-tight group-hover:tracking-normal transition-all duration-300">
+                  Hayal Et, Üretelim.
+                </span>
+                {/* Alt çizgi animasyonu */}
+                <motion.div
+                  className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                />
+                {/* Glow efekti */}
+                <div className="absolute -bottom-1 left-0 h-[2px] w-full bg-gradient-to-r from-[#E73879]/50 via-[#FF3A3A]/50 to-[#D60000]/50 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation - Lüks minimal tasarım */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group relative px-5 py-2.5 text-[15px] lg:text-base font-medium text-gray-600 hover:text-gray-900 transition-all duration-500 tracking-wide"
-              >
-                <span className="relative z-10 transition-all duration-500 group-hover:tracking-wider">
-                  {item.label}
-                </span>
-                {/* Sofistike hover efekti */}
-                <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-gray-100/40 via-gray-50/60 to-white/40 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 origin-center backdrop-blur-sm" />
-                {/* İnce alt çizgi */}
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gradient-to-r from-accent/0 via-accent/80 to-accent/0 group-hover:w-3/4 transition-all duration-500" />
-                {/* Minimal glow */}
-                <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(225,6,0,0.03)]" />
-              </Link>
-            ))}
+            {navItems.map((item, index) => {
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/");
+              const isPrimary = item.isPrimary;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`group relative py-3 text-base lg:text-[17px] transition-all duration-200 tracking-wide active:scale-[0.98] ${
+                    isPrimary ? "px-7" : "px-6"
+                  } ${
+                    isActive
+                      ? "font-medium text-[#E73879]"
+                      : isPrimary
+                      ? "font-medium text-gray-700 hover:text-gray-900 hover:opacity-90"
+                      : "font-normal text-gray-600 hover:text-gray-800 hover:opacity-90"
+                  }`}
+                >
+                  <span
+                    className={`relative z-10 transition-all duration-200 ${
+                      isActive
+                        ? ""
+                        : !isPrimary
+                        ? "group-hover:font-medium"
+                        : ""
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                  {/* Aktif sayfa alt çizgisi - sürekli görünür */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 h-[1.5px] w-full bg-[#E73879]" />
+                  )}
+                  {/* Premium underline slide animasyonu - sadece hover'da (aktif değilse) */}
+                  {!isActive && (
+                    <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-gradient-to-r from-accent via-accent/90 to-accent/80 group-hover:w-full transition-all duration-200 ease-out" />
+                  )}
+                </Link>
+              );
+            })}
 
-            {/* CTA Button - Daha lüks ve minimal */}
+            {/* CTA Button - Modern ve premium */}
             <Link
               href="/teklif"
-              className="group relative ml-3 lg:ml-6 inline-flex items-center justify-center h-12 px-8 rounded-2xl bg-gradient-to-br from-accent via-accent to-accent/95 text-white font-semibold overflow-hidden transition-all duration-500 hover:shadow-[0_8px_40px_rgba(225,6,0,0.35),0_0_60px_rgba(225,6,0,0.15)] hover:scale-[1.02] active:scale-[0.98] tracking-wide"
+              className="group relative ml-20 lg:ml-28 inline-flex items-center justify-center py-3.5 px-7 rounded-xl bg-gradient-to-r from-[#FF3A3A] to-[#D60000] text-white font-semibold overflow-hidden transition-all duration-200 hover:translate-x-[2px] hover:opacity-90 active:translate-x-0 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.15)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_12px_rgba(214,0,0,0.3)] tracking-wide"
             >
-              <span className="relative z-10 flex items-center gap-2.5 text-[15px]">
-                <span className="transition-all duration-300 group-hover:tracking-wider">
-                  Teklif Al
-                </span>
+              <span className="relative z-10 flex items-center gap-2.5 text-base">
+                <span className="transition-all duration-200">Teklif Al</span>
                 <motion.svg
-                  className="w-4 h-4"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   initial={{ x: 0 }}
-                  whileHover={{ x: 3 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <path
                     strokeLinecap="round"
@@ -172,10 +213,8 @@ export default function Header() {
                   />
                 </motion.svg>
               </span>
-              {/* Animasyonlu şık overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-              {/* İç glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/10 to-transparent transition-opacity duration-500" />
+              {/* Hafif inner shadow efekti */}
+              <div className="absolute inset-0 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] rounded-xl pointer-events-none" />
             </Link>
           </div>
         </nav>
@@ -205,45 +244,90 @@ export default function Header() {
 
             <div className="container-px py-8">
               <div className="grid gap-3">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.05,
-                      duration: 0.3,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    style={{ willChange: "transform, opacity" }}
-                  >
-                    <Link
-                      href={item.href}
-                      className="group relative flex items-center justify-between h-16 px-6 rounded-2xl bg-gradient-to-br from-white/80 via-gray-50/60 to-white/40 hover:from-white/90 hover:to-gray-50/70 border border-gray-200/50 hover:border-accent/30 transition-colors duration-300 shadow-sm hover:shadow-md overflow-hidden"
-                      onClick={() => setIsOpen(false)}
+                {navItems.map((item, index) => {
+                  const isActive =
+                    pathname === item.href ||
+                    pathname.startsWith(item.href + "/");
+                  const isPrimary = item.isPrimary;
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: index * 0.05,
+                        duration: 0.3,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      style={{ willChange: "transform, opacity" }}
                     >
-                      <span className="relative z-10 text-gray-600 group-hover:text-gray-900 font-semibold transition-colors duration-300 tracking-wide group-hover:tracking-wider text-[15px]">
-                        {item.label}
-                      </span>
-                      <motion.div
-                        className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100/50 group-hover:bg-accent/10 transition-colors duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
+                      <Link
+                        href={item.href}
+                        className={`group relative flex items-center justify-between h-[72px] rounded-2xl bg-gradient-to-br from-white/80 via-gray-50/60 to-white/40 hover:from-white/90 hover:to-gray-50/70 hover:opacity-90 border transition-all duration-200 shadow-sm hover:shadow-md overflow-hidden active:scale-[0.98] ${
+                          isPrimary ? "px-8" : "px-7"
+                        } ${
+                          isActive
+                            ? "border-[#E73879]/40 bg-gradient-to-br from-[#E73879]/5 via-white/80 to-white/40"
+                            : "border-gray-200/50 hover:border-accent/30"
+                        }`}
+                        onClick={(e) => {
+                          setIsOpen(false);
+                          // Ripple efekti
+                          const button = e.currentTarget;
+                          const ripple = document.createElement("span");
+                          const rect = button.getBoundingClientRect();
+                          const size = Math.max(rect.width, rect.height);
+                          const x = e.clientX - rect.left - size / 2;
+                          const y = e.clientY - rect.top - size / 2;
+
+                          ripple.style.cssText = `
+                            position: absolute;
+                            width: ${size}px;
+                            height: ${size}px;
+                            border-radius: 50%;
+                            background: rgba(225, 6, 0, 0.3);
+                            left: ${x}px;
+                            top: ${y}px;
+                            transform: scale(0);
+                            animation: ripple 0.6s ease-out;
+                            pointer-events: none;
+                          `;
+
+                          button.appendChild(ripple);
+                          setTimeout(() => ripple.remove(), 600);
+                        }}
                       >
-                        <motion.span
-                          className="text-gray-400 group-hover:text-accent font-light text-lg"
-                          initial={{ x: -3 }}
-                          whileHover={{ x: 0 }}
-                          transition={{ duration: 0.2 }}
+                        <span
+                          className={`relative z-10 transition-colors duration-300 tracking-wide group-hover:tracking-wider text-base ${
+                            isActive
+                              ? "text-[#E73879] font-medium"
+                              : isPrimary
+                              ? "text-gray-700 group-hover:text-gray-900 font-semibold"
+                              : "text-gray-600 group-hover:text-gray-900 font-semibold"
+                          }`}
                         >
-                          →
-                        </motion.span>
-                      </motion.div>
-                      {/* Hover gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </Link>
-                  </motion.div>
-                ))}
+                          {item.label}
+                        </span>
+                        <motion.div
+                          className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100/50 group-hover:bg-accent/10 transition-colors duration-300"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <motion.span
+                            className="text-gray-400 group-hover:text-accent font-light text-lg"
+                            initial={{ x: -3 }}
+                            whileHover={{ x: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            →
+                          </motion.span>
+                        </motion.div>
+                        {/* Hover gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
 
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -258,11 +342,36 @@ export default function Header() {
                 >
                   <Link
                     href="/teklif"
-                    className="group relative flex items-center justify-center h-16 px-8 rounded-2xl bg-gradient-to-br from-accent via-accent to-accent/95 text-white font-bold overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(225,6,0,0.4),0_0_60px_rgba(225,6,0,0.2)] active:scale-[0.98] tracking-wide"
-                    onClick={() => setIsOpen(false)}
+                    className="group relative flex items-center justify-center py-4.5 px-7 rounded-xl bg-gradient-to-r from-[#FF3A3A] to-[#D60000] text-white font-semibold overflow-hidden transition-all duration-200 hover:opacity-90 active:translate-x-0 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.15)] tracking-wide"
+                    onClick={(e) => {
+                      setIsOpen(false);
+                      // Ripple efekti
+                      const button = e.currentTarget;
+                      const ripple = document.createElement("span");
+                      const rect = button.getBoundingClientRect();
+                      const size = Math.max(rect.width, rect.height);
+                      const x = e.clientX - rect.left - size / 2;
+                      const y = e.clientY - rect.top - size / 2;
+
+                      ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.4);
+                        left: ${x}px;
+                        top: ${y}px;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                      `;
+
+                      button.appendChild(ripple);
+                      setTimeout(() => ripple.remove(), 600);
+                    }}
                   >
                     <span className="relative z-10 flex items-center gap-3 text-base">
-                      <span className="transition-all duration-200 group-hover:tracking-wider">
+                      <span className="transition-all duration-200">
                         Teklif Al
                       </span>
                       <motion.svg
@@ -271,7 +380,7 @@ export default function Header() {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         initial={{ x: 0 }}
-                        whileHover={{ x: 3 }}
+                        whileHover={{ x: 2 }}
                         transition={{ duration: 0.2 }}
                       >
                         <path
@@ -282,10 +391,8 @@ export default function Header() {
                         />
                       </motion.svg>
                     </span>
-                    {/* Animasyonlu overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-                    {/* İç glow */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-white/10 to-transparent transition-opacity duration-300" />
+                    {/* Hafif inner shadow efekti */}
+                    <div className="absolute inset-0 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] rounded-xl pointer-events-none" />
                   </Link>
                 </motion.div>
               </div>
