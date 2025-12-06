@@ -43,7 +43,6 @@ export default function Footer() {
     { href: "/hakkimizda", label: "Hakkımızda" },
     { href: "/referans", label: "Referanslar" },
     { href: "/hizmetler", label: "Hizmetler" },
-    { href: "#hizmet", label: "Kapsam" },
   ];
 
   const socialLinks = [

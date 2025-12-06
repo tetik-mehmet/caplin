@@ -59,4 +59,65 @@ body {
   }
 }
 
-/* Logo animasyonları kaldırıldı */
+/* Gradient Animated Header Animasyonları */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  33% {
+    transform: translateX(30%) translateY(-30%);
+  }
+  66% {
+    transform: translateX(-30%) translateY(30%);
+  }
+  100% {
+    transform: translateX(0%) translateY(0%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.header-gradient-animated {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(249, 250, 251, 0.9) 25%,
+    rgba(241, 245, 249, 0.85) 50%,
+    rgba(249, 250, 251, 0.9) 75%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.header-gradient-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(225, 6, 0, 0.03) 0%,
+    rgba(225, 6, 0, 0.05) 25%,
+    rgba(225, 6, 0, 0.03) 50%,
+    rgba(225, 6, 0, 0.05) 75%,
+    rgba(225, 6, 0, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 8s linear infinite;
+}
