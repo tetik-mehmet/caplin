@@ -133,3 +133,60 @@ body {
   background-size: 200% 100%;
   animation: shimmer 8s linear infinite;
 }
+
+/* Footer Divider Animasyonları - Prestijli ve Şık */
+@keyframes divider-slide {
+  0% {
+    left: -50%;
+    opacity: 0;
+    width: 30%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+    width: 35%;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    width: 30%;
+  }
+}
+
+@keyframes divider-pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.footer-divider-slide {
+  animation: divider-slide 5s ease-in-out infinite;
+}
+
+.footer-divider-pulse {
+  animation: divider-pulse 3s ease-in-out infinite;
+}
+
+/* Tooltip Animasyonu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}

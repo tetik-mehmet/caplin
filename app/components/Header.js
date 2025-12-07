@@ -107,7 +107,7 @@ export default function Header() {
           {/* Logo - Daha sofistike glow efekti */}
           <Link
             href="/"
-            className="group flex-shrink-0 relative z-10 md:order-first md:mr-12 lg:mr-14 flex items-center gap-3 lg:gap-4"
+            className="group flex-shrink-0 relative z-10 md:order-first md:mr-12 lg:mr-14 flex items-center gap-2 sm:gap-3 lg:gap-4"
           >
             <div className="relative">
               <Image
@@ -127,10 +127,10 @@ export default function Header() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden sm:block relative"
+              className="relative"
             >
               <div className="relative">
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] bg-clip-text text-transparent tracking-tight group-hover:tracking-normal transition-all duration-300">
+                <span className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] bg-clip-text text-transparent tracking-tight group-hover:tracking-normal transition-all duration-300 whitespace-nowrap">
                   Hayal Et, Üretelim.
                 </span>
                 {/* Alt çizgi animasyonu */}
