@@ -56,6 +56,9 @@ export const metadata = {
     icon: [
       { url: "/logo.png", sizes: "any" },
       { url: "/logo.png", sizes: "512x512", type: "image/png" },
+      { url: "/logo.png", sizes: "192x192", type: "image/png" },
+      { url: "/logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo.png", sizes: "16x16", type: "image/png" },
     ],
     shortcut: "/logo.png",
     apple: "/logo.png",
@@ -75,6 +78,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "Caplin 3D Teknoloji Logo",
+        type: "image/png",
       },
     ],
   },
@@ -114,6 +118,8 @@ const organizationSchema = {
     url: "https://caplin3dteknoloji.com/logo.png",
     width: 512,
     height: 512,
+    contentUrl: "https://caplin3dteknoloji.com/logo.png",
+    encodingFormat: "image/png",
   },
   image: "https://caplin3dteknoloji.com/logo.png",
   description:
@@ -162,8 +168,14 @@ export default function RootLayout({ children }) {
         {/* Favicon Links */}
         <link rel="icon" href="/logo.png" sizes="any" />
         <link rel="icon" href="/logo.png" type="image/png" sizes="512x512" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="16x16" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="shortcut icon" href="/logo.png" />
+        {/* Google Site Logo Meta Tag */}
+        <meta itemProp="logo" content="https://caplin3dteknoloji.com/logo.png" />
+        <meta name="logo" content="https://caplin3dteknoloji.com/logo.png" />
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
