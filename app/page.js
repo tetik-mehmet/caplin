@@ -211,32 +211,36 @@ export default function Home() {
             alt="Arka plan"
             fill
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center blur-[2px]"
             priority
           />
 
           {/* Gradient overlay - Okunabilirlik için */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40" />
         </div>
 
         {/* İçerik */}
         <div className="relative z-10 container-px px-4 py-16 sm:py-20 flex flex-col items-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-white drop-shadow-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-white drop-shadow-2xl tracking-tight">
             3D BASKI VE MAKET
-            <span className="block bg-gradient-to-r from-red-400 via-red-500 to-red-400 bg-clip-text text-transparent mt-2 drop-shadow-lg">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-red-400 via-red-500 to-red-400 bg-clip-text text-transparent mt-2 drop-shadow-lg tracking-tight">
               ÜRETİMİNDE GÜVENİLİR ÇÖZÜMLER
             </span>
           </h1>
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-white/90 drop-shadow-lg max-w-2xl px-4 font-bold">
+            Prototip, maket, özel parçalar ve endüstriyel üretim için
+            profesyonel 3D baskı hizmeti sunuyoruz.
+          </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 px-4">
             <a
               href="/teklif"
-              className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/50 hover:shadow-xl hover:shadow-red-600/60 hover:-translate-y-0.5 text-sm sm:text-base"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:via-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-md shadow-red-600/30 hover:shadow-lg hover:shadow-red-600/50 hover:-translate-y-1 text-sm sm:text-base"
             >
               Teklif Al
             </a>
             <a
               href="/hizmetler"
-              className="inline-flex items-center justify-center h-12 px-8 rounded-xl border-2 border-white text-white font-semibold bg-white/10 backdrop-blur-sm hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm sm:text-base"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-2xl border-[3px] border-white text-white font-semibold bg-white/10 backdrop-blur-sm hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 text-sm sm:text-base"
             >
               Hizmet Kapsamı
             </a>
