@@ -190,3 +190,19 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
+
+/* Image Entrance Animasyonu - Subtle Zoom + Fade */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fadeInScale {
+  animation: fadeInScale 0.8s ease-out;
+}

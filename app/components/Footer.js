@@ -11,6 +11,8 @@ export default function Footer() {
   const [hoveredSocial, setHoveredSocial] = useState(null);
   const modalContentRef = useRef(null);
   const termsModalContentRef = useRef(null);
+  const modalContainerRef = useRef(null);
+  const termsModalContainerRef = useRef(null);
   const currentYear = new Date().getFullYear();
 
   // ESC tuşu ile modalı kapatma
@@ -29,31 +31,70 @@ export default function Footer() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isPrivacyModalOpen, isTermsModalOpen]);
 
-  // Modal açıkken body scroll'unu engelleme
+  // Modal açıkken body scroll'unu engelleme ve sayfayı en üste kaydırma
   useEffect(() => {
     if (isPrivacyModalOpen || isTermsModalOpen) {
+      // Sayfa scroll pozisyonunu kaydet
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
-      // Modal içeriğini en üste kaydır
-      setTimeout(() => {
-        if (modalContentRef.current) {
-          modalContentRef.current.scrollTop = 0;
+
+      // Window scroll'unu sıfırla (mobil için)
+      window.scrollTo(0, 0);
+
+      // Modal container ve içeriğini en üste kaydır - daha agresif yaklaşım
+      const scrollToTop = () => {
+        if (isPrivacyModalOpen) {
+          if (modalContainerRef.current) {
+            modalContainerRef.current.scrollTop = 0;
+            modalContainerRef.current.scrollTo(0, 0);
+          }
+          if (modalContentRef.current) {
+            modalContentRef.current.scrollTop = 0;
+            modalContentRef.current.scrollTo(0, 0);
+          }
         }
-        if (termsModalContentRef.current) {
-          termsModalContentRef.current.scrollTop = 0;
+        if (isTermsModalOpen) {
+          if (termsModalContainerRef.current) {
+            termsModalContainerRef.current.scrollTop = 0;
+            termsModalContainerRef.current.scrollTo(0, 0);
+          }
+          if (termsModalContentRef.current) {
+            termsModalContentRef.current.scrollTop = 0;
+            termsModalContentRef.current.scrollTo(0, 0);
+          }
         }
-      }, 10);
+      };
+
+      // Hemen ve farklı zamanlarda scroll'u sıfırla - modal render olana kadar bekle
+      requestAnimationFrame(() => {
+        scrollToTop();
+        setTimeout(scrollToTop, 0);
+        setTimeout(scrollToTop, 50);
+        setTimeout(scrollToTop, 100);
+        setTimeout(scrollToTop, 200);
+      });
+
+      return () => {
+        // Scroll pozisyonunu geri yükle
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        document.body.style.overflow = "";
+        window.scrollTo(0, scrollY);
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isPrivacyModalOpen, isTermsModalOpen]);
 
   // Scroll pozisyonunu dinleme - Back to Top butonu için
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+      const scrollPosition =
+        window.scrollY || document.documentElement.scrollTop;
       // 300px aşağı kaydırıldığında butonu göster
       setShowBackToTop(scrollPosition > 300);
     };
@@ -70,11 +111,63 @@ export default function Footer() {
     });
   };
 
+  // Modal içeriğini en üste kaydırma fonksiyonu
+  const resetModalScroll = (isPrivacy = true) => {
+    const resetScroll = () => {
+      if (isPrivacy) {
+        if (modalContentRef.current) {
+          modalContentRef.current.scrollTop = 0;
+          modalContentRef.current.scrollTo(0, 0);
+        }
+        if (modalContainerRef.current) {
+          modalContainerRef.current.scrollTop = 0;
+          modalContainerRef.current.scrollTo(0, 0);
+        }
+      } else {
+        if (termsModalContentRef.current) {
+          termsModalContentRef.current.scrollTop = 0;
+          termsModalContentRef.current.scrollTo(0, 0);
+        }
+        if (termsModalContainerRef.current) {
+          termsModalContainerRef.current.scrollTop = 0;
+          termsModalContainerRef.current.scrollTo(0, 0);
+        }
+      }
+    };
+
+    // Hemen ve farklı zamanlarda scroll'u sıfırla
+    resetScroll();
+    requestAnimationFrame(() => {
+      resetScroll();
+      setTimeout(resetScroll, 0);
+      setTimeout(resetScroll, 50);
+      setTimeout(resetScroll, 100);
+      setTimeout(resetScroll, 200);
+    });
+  };
+
+  // Gizlilik Politikası modal'ını açma
+  const openPrivacyModal = () => {
+    setIsPrivacyModalOpen(true);
+    setTimeout(() => resetModalScroll(true), 0);
+    setTimeout(() => resetModalScroll(true), 50);
+    setTimeout(() => resetModalScroll(true), 100);
+  };
+
+  // Kullanım Koşulları modal'ını açma
+  const openTermsModal = () => {
+    setIsTermsModalOpen(true);
+    setTimeout(() => resetModalScroll(false), 0);
+    setTimeout(() => resetModalScroll(false), 50);
+    setTimeout(() => resetModalScroll(false), 100);
+  };
+
   const quickLinks = [
     { href: "/", label: "Ana Sayfa" },
     { href: "/hakkimizda", label: "Hakkımızda" },
     { href: "/referans", label: "Referanslar" },
     { href: "/hizmetler", label: "Hizmetler" },
+    { href: "/projelerimiz", label: "Projelerimiz" },
   ];
 
   const socialLinks = [
@@ -102,7 +195,7 @@ export default function Footer() {
     },
     {
       name: "WhatsApp",
-      href: "https://wa.me/905358895258?text=Merhaba%2C%20bilgi%20almak%20istiyorum",
+      href: "https://wa.me/905435518811?text=merhaba%2C%20bilgi%20almak%20istiyorum%20Konu%3A%20",
       target: "_blank",
       rel: "noopener noreferrer",
       icon: (
@@ -164,7 +257,7 @@ export default function Footer() {
                       {/* Subtle glow on hover */}
                       <div className="absolute inset-0 rounded-xl bg-accent/0 group-hover:bg-accent/10 transition-all duration-300" />
                     </a>
-                    
+
                     {/* Tooltip - Sadece desktop'ta göster */}
                     {hoveredSocial === social.name && (
                       <div className="hidden sm:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-lg shadow-xl whitespace-nowrap z-50 animate-fadeIn">
@@ -359,7 +452,8 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed">
-              Haritaya tıklayarak Google Maps'te tam konumu görüntüleyebilirsiniz.
+              Haritaya tıklayarak Google Maps&apos;te tam konumu
+              görüntüleyebilirsiniz.
             </p>
           </div>
         </div>
@@ -379,7 +473,7 @@ export default function Footer() {
               güvenilen kurumlar arasındayız.
             </p>
           </div>
-          
+
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
             {/* Boğaziçi Üniversitesi */}
             <div className="group relative flex items-center justify-center h-16 sm:h-20 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
@@ -436,16 +530,12 @@ export default function Footer() {
           <div className="relative w-full h-[1px] overflow-hidden">
             {/* Ana statik çizgi - temel arka plan */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-300/30 to-transparent" />
-            
+
             {/* Animasyonlu akan çizgi - soldan sağa akan premium efekt */}
-            <div 
-              className="absolute top-0 h-full bg-gradient-to-r from-transparent via-accent/80 to-transparent footer-divider-slide"
-            />
-            
+            <div className="absolute top-0 h-full bg-gradient-to-r from-transparent via-accent/80 to-transparent footer-divider-slide" />
+
             {/* Glow efekti - yumuşak pulse */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/40 to-transparent blur-[1px] footer-divider-pulse"
-            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/40 to-transparent blur-[1px] footer-divider-pulse" />
           </div>
         </div>
 
@@ -458,14 +548,15 @@ export default function Footer() {
             <div>
               <p className="text-sm text-gray-800">
                 © {currentYear}{" "}
-                <span className="text-accent font-bold">Caplin 3D</span> Tüm hakları saklıdır.
+                <span className="text-accent font-bold">Caplin 3D</span> Tüm
+                hakları saklıdır.
               </p>
             </div>
           </div>
           <div className="flex items-center gap-1 sm:ml-4">
             <span className="text-gray-400">•</span>
             <button
-              onClick={() => setIsPrivacyModalOpen(true)}
+              onClick={openPrivacyModal}
               className="group inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -473,7 +564,7 @@ export default function Footer() {
             </button>
             <span className="text-gray-400">•</span>
             <button
-              onClick={() => setIsTermsModalOpen(true)}
+              onClick={openTermsModal}
               className="group inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
             >
               <span className="h-1 w-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -489,11 +580,12 @@ export default function Footer() {
       {/* Gizlilik Politikası Modal */}
       {isPrivacyModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+          ref={modalContainerRef}
+          className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-0 sm:p-2 sm:p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300 overflow-hidden sm:overflow-y-auto"
           onClick={() => setIsPrivacyModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-white rounded-xl sm:rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden transition-all duration-300 transform flex flex-col"
+            className="relative w-full max-w-4xl h-full sm:h-auto sm:max-h-[90vh] bg-white rounded-none sm:rounded-xl sm:rounded-2xl shadow-2xl border-0 sm:border-2 border-gray-200 overflow-hidden transition-all duration-300 transform flex flex-col my-0 sm:my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -544,8 +636,8 @@ export default function Footer() {
             {/* Modal Content */}
             <div
               ref={modalContentRef}
-              className="overflow-y-auto flex-1 min-h-0 px-4 py-4 sm:px-8 sm:py-8"
-              style={{ scrollBehavior: "smooth" }}
+              className="overflow-y-auto flex-1 min-h-0 px-4 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-8"
+              style={{ scrollBehavior: "auto", scrollPaddingTop: "0" }}
             >
               <div className="prose prose-sm sm:prose-base max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-li:text-gray-700 space-y-6">
                 <p className="text-base leading-relaxed text-gray-700">
@@ -736,11 +828,12 @@ export default function Footer() {
       {/* Kullanım Koşulları Modal */}
       {isTermsModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+          ref={termsModalContainerRef}
+          className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-0 sm:p-2 sm:p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300 overflow-hidden sm:overflow-y-auto"
           onClick={() => setIsTermsModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-white rounded-xl sm:rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden transition-all duration-300 transform flex flex-col"
+            className="relative w-full max-w-4xl h-full sm:h-auto sm:max-h-[90vh] bg-white rounded-none sm:rounded-xl sm:rounded-2xl shadow-2xl border-0 sm:border-2 border-gray-200 overflow-hidden transition-all duration-300 transform flex flex-col my-0 sm:my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -791,16 +884,16 @@ export default function Footer() {
             {/* Modal Content */}
             <div
               ref={termsModalContentRef}
-              className="overflow-y-auto flex-1 min-h-0 px-4 py-4 sm:px-8 sm:py-8"
-              style={{ scrollBehavior: "smooth" }}
+              className="overflow-y-auto flex-1 min-h-0 px-4 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-8"
+              style={{ scrollBehavior: "auto", scrollPaddingTop: "0" }}
             >
               <div className="prose prose-sm sm:prose-base max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-li:text-gray-700 space-y-6">
                 <p className="text-base leading-relaxed text-gray-700">
                   Bu Kullanım Koşulları, caplin3dteknoloji.com
-                  (&quot;Site&quot;) üzerinden hizmetlerimizi kullanımınıza ilişkin
-                  kuralları ve yükümlülükleri açıklamaktadır. Sitemizi ziyaret
-                  ederek veya hizmetlerimizi kullanarak bu koşulları kabul etmiş
-                  sayılırsınız.
+                  (&quot;Site&quot;) üzerinden hizmetlerimizi kullanımınıza
+                  ilişkin kuralları ve yükümlülükleri açıklamaktadır. Sitemizi
+                  ziyaret ederek veya hizmetlerimizi kullanarak bu koşulları
+                  kabul etmiş sayılırsınız.
                 </p>
 
                 <section className="space-y-4">
@@ -812,8 +905,9 @@ export default function Footer() {
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
                     Caplin 3D Teknoloji (&quot;Şirket&quot;), 3D baskı, prototip
-                    üretimi ve maket imalatı hizmetleri sunmaktadır. Hizmetlerimizi
-                    kullanırken aşağıdaki koşullara uymanız gerekmektedir.
+                    üretimi ve maket imalatı hizmetleri sunmaktadır.
+                    Hizmetlerimizi kullanırken aşağıdaki koşullara uymanız
+                    gerekmektedir.
                   </p>
                 </section>
 
@@ -846,12 +940,10 @@ export default function Footer() {
                     Hizmetlerimizi kullanırken:
                   </p>
                   <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                    <li>Doğru ve güncel bilgiler sağlamakla yükümlüsünüz</li>
                     <li>
-                      Doğru ve güncel bilgiler sağlamakla yükümlüsünüz
-                    </li>
-                    <li>
-                      Telif hakkı veya fikri mülkiyet haklarını ihlal eden içerik
-                      göndermemelisiniz
+                      Telif hakkı veya fikri mülkiyet haklarını ihlal eden
+                      içerik göndermemelisiniz
                     </li>
                     <li>
                       Hizmetlerimizi yasadışı amaçlar için kullanmamalısınız
@@ -913,8 +1005,8 @@ export default function Footer() {
                     İletişim
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    Kullanım Koşulları hakkında sorularınız için bizimle iletişime
-                    geçebilirsiniz:
+                    Kullanım Koşulları hakkında sorularınız için bizimle
+                    iletişime geçebilirsiniz:
                   </p>
                   <a
                     href="mailto:info@caplin.com.tr"
@@ -965,21 +1057,21 @@ export default function Footer() {
           }`}
           aria-label="Yukarı Çık"
         >
-        {/* Ok ikonu */}
-        <svg
-          className="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:-translate-y-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M5 10l7-7m0 0l7 7m-7-7v18"
-          />
-        </svg>
-        
+          {/* Ok ikonu */}
+          <svg
+            className="w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover:-translate-y-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+
           {/* Glow efekti */}
           <div className="absolute inset-0 rounded-full bg-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
         </button>
