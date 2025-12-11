@@ -12,12 +12,6 @@ const references = [
     description: "Akademik araştırma ve prototip geliştirme projeleri",
   },
   {
-    name: "Clarte",
-    image: "/referanslar/clarte.avif",
-    category: "Teknoloji",
-    description: "Kurumsal ürün prototipleri ve özel tasarım çözümleri",
-  },
-  {
     name: "Dokuz Eylül Üniversitesi",
     image: "/referanslar/dokuz.avif",
     category: "Eğitim",
@@ -61,7 +55,7 @@ const structuredData = {
   "@type": "WebPage",
   name: "Caplin3D Referanslarımız - İş Birliklerimiz",
   description:
-    "Boğaziçi Üniversitesi, Clarte, Dokuz Eylül Üniversitesi gibi prestijli kurumlarla gerçekleştirdiğimiz başarılı 3D baskı ve prototip üretim projeleri. 50+ kurumsal işbirliği, 200+ tamamlanan proje deneyimi.",
+    "Boğaziçi Üniversitesi, Dokuz Eylül Üniversitesi gibi prestijli kurumlarla gerçekleştirdiğimiz başarılı 3D baskı ve prototip üretim projeleri. 50+ kurumsal işbirliği, 200+ tamamlanan proje deneyimi.",
   potentialAction: {
     "@type": "SearchAction",
     target: "https://www.caplin3d.com/referans",
