@@ -122,28 +122,6 @@ export default function Header() {
               <div className="absolute inset-0 bg-accent/10 rounded-lg blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
               <div className="absolute inset-0 bg-accent/5 rounded-lg blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
             </div>
-            {/* Slogan - Modern ve dikkat çekici */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative">
-                <span className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] bg-clip-text text-transparent tracking-tight group-hover:tracking-normal transition-all duration-300 whitespace-nowrap">
-                  Hayal Et, Üretelim.
-                </span>
-                {/* Alt çizgi animasyonu */}
-                <motion.div
-                  className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-[#E73879] via-[#FF3A3A] to-[#D60000] rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                />
-                {/* Glow efekti */}
-                <div className="absolute -bottom-1 left-0 h-[2px] w-full bg-gradient-to-r from-[#E73879]/50 via-[#FF3A3A]/50 to-[#D60000]/50 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            </motion.div>
           </Link>
 
           {/* Desktop Navigation - Lüks minimal tasarım */}

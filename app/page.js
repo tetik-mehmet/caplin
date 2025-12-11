@@ -200,7 +200,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-accent/5">
       {/* HERO */}
       <section className="relative isolate flex flex-col items-center justify-center text-center min-h-[85vh] sm:min-h-[90vh] overflow-hidden">
         {/* Arka plan resmi container */}
@@ -223,7 +223,7 @@ export default function Home() {
         <div className="relative z-10 container-px px-4 py-16 sm:py-20 flex flex-col items-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-white drop-shadow-2xl tracking-tight">
             3D BASKI VE MAKET
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-red-400 via-red-500 to-red-400 bg-clip-text text-transparent mt-2 drop-shadow-lg tracking-tight">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-accent mt-2 drop-shadow-lg tracking-tight">
               ÜRETİMİNDE GÜVENİLİR ÇÖZÜMLER
             </span>
           </h1>
@@ -234,7 +234,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 px-4">
             <a
               href="/teklif"
-              className="inline-flex items-center justify-center h-12 px-8 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:via-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-md shadow-red-600/30 hover:shadow-lg hover:shadow-red-600/50 hover:-translate-y-1 text-sm sm:text-base"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-2xl bg-gradient-to-r from-accent via-accent to-accent/90 hover:from-accent/90 hover:via-accent/90 hover:to-accent text-white font-semibold transition-all duration-300 shadow-md shadow-accent/30 hover:shadow-lg hover:shadow-accent/50 hover:-translate-y-1 text-sm sm:text-base"
             >
               Teklif Al
             </a>
@@ -249,22 +249,20 @@ export default function Home() {
       </section>
 
       {/* REFERANS PROJE */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-gray-100">
+      <section className="container-px py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
           {/* Başlık */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               Savunma Sanayisinde{" "}
-              <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-                Öncü Çözümler
-              </span>
+              <span className="text-accent">Öncü Çözümler</span>
             </h2>
           </div>
 
           {/* Proje Kartı */}
           <div className="relative group">
             {/* Ana Kart */}
-            <div className="relative overflow-hidden rounded-3xl bg-gray-50 border-2 border-gray-300 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(220,38,38,0.15)] hover:border-red-300">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 border border-gray-700/50 shadow-2xl transition-all duration-500 hover:shadow-[0_20px_80px_rgba(225,6,0,0.2)] hover:border-accent/50">
               {/* Arka Plan Efekti */}
               <div className="absolute inset-0 opacity-[0.02]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.1),transparent_70%)]" />
@@ -283,7 +281,7 @@ export default function Home() {
                 <div className="flex flex-col justify-center space-y-6">
                   {/* Müşteri Logo */}
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-white p-3 shadow-md border-2 border-gray-200 flex items-center justify-center">
+                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-gray-700/50 p-3 shadow-md border border-gray-600/50 flex items-center justify-center">
                       <Image
                         src="/referanslar/bogazici.avif"
                         alt="Boğaziçi Üniversitesi"
@@ -292,10 +290,10 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">
+                      <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">
                         Müşteri
                       </p>
-                      <p className="text-sm font-bold text-gray-900">
+                      <p className="text-sm font-bold text-white">
                         Boğaziçi Üniversitesi
                       </p>
                     </div>
@@ -304,12 +302,12 @@ export default function Home() {
                   {/* Proje Detayları */}
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                         Radar Sistemi Prototipi
                       </h3>
                     </div>
 
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-300 leading-relaxed">
                       Savunma sanayi sektörünün önde gelen firmalarından biri
                       için ürettiğimiz yüksek hassasiyetli radar sistemi
                       prototipi. Proje, ileri teknoloji 3D baskı yöntemleri ve
@@ -318,13 +316,13 @@ export default function Home() {
 
                     {/* Özellikler */}
                     <div className="flex flex-wrap gap-2 pt-2">
-                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
+                      <span className="px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold">
                         Yüksek Hassasiyet
                       </span>
-                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
+                      <span className="px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold">
                         Savunma Sanayi
                       </span>
-                      <span className="px-3 py-1.5 rounded-full bg-red-50 border-2 border-red-300 text-red-700 text-xs font-bold">
+                      <span className="px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold">
                         Prototip Üretim
                       </span>
                     </div>
@@ -334,7 +332,7 @@ export default function Home() {
                   <div className="pt-4">
                     <a
                       href="/teklif"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5 text-sm sm:text-base"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 text-sm sm:text-base"
                     >
                       <svg
                         className="w-5 h-5"
@@ -409,24 +407,24 @@ export default function Home() {
               </div>
 
               {/* Metrikler ve Sosyal Kanıt */}
-              <div className="relative border-t-2 border-gray-300 bg-gradient-to-br from-gray-50 to-gray-100 px-8 py-8">
+              <div className="relative border-t border-gray-700/50 bg-gradient-to-br from-gray-800/50 to-gray-900/50 px-8 py-8">
                 {/* Proje Sonuçları - Kontrastlı Kutular */}
                 <div className="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto md:mx-0">
                   {/* Hassasiyet Metriği */}
-                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-red-600 to-red-700 p-4 shadow-lg border-2 border-red-500/50 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-accent/90 p-4 shadow-lg border border-accent/50 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
                     <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-8 -mt-8" />
                     <div className="relative z-10">
                       <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
                         %100
                       </div>
-                      <div className="text-xs text-red-100 uppercase tracking-wider font-semibold">
+                      <div className="text-xs text-white/80 uppercase tracking-wider font-semibold">
                         Doğruluk
                       </div>
                     </div>
                   </div>
 
                   {/* Kalite Metriği */}
-                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 shadow-lg border-2 border-gray-700 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-700 to-gray-800 p-4 shadow-lg border border-gray-600/50 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
                     <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-8 -mt-8" />
                     <div className="relative z-10">
                       <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
@@ -440,10 +438,10 @@ export default function Home() {
                 </div>
 
                 {/* Teknoloji Bilgisi */}
-                <div className="pt-4 border-t border-gray-300">
-                  <div className="text-sm text-gray-700 font-medium">
-                    <span className="text-red-600 font-bold">FDM</span> ve{" "}
-                    <span className="text-red-600 font-bold">Reçine</span>{" "}
+                <div className="pt-4 border-t border-gray-700/50">
+                  <div className="text-sm text-gray-300 font-medium">
+                    <span className="text-accent font-bold">FDM</span> ve{" "}
+                    <span className="text-accent font-bold">Reçine</span>{" "}
                     Teknolojisi
                   </div>
                 </div>
@@ -451,41 +449,36 @@ export default function Home() {
             </div>
 
             {/* Glow Efekti */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-red-100/0 via-red-100/20 to-red-100/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
           </div>
         </div>
       </section>
 
       {/* HİZMETLER */}
-      <section
-        id="ozellikler"
-        className="container-px py-16 sm:py-20 bg-gray-100"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-          Öne Çıkan{" "}
-          <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-            Hizmetler
-          </span>
+      <section id="ozellikler" className="container-px py-16 sm:py-20">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          Öne Çıkan <span className="text-accent">Hizmetler</span>
         </h2>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((f, i) => (
             <article
               key={i}
-              className={`group relative overflow-hidden rounded-2xl border-2 h-[140px] p-6 flex flex-col gap-3 transition-all duration-300 motion-safe:transform-gpu ${
+              className={`group relative overflow-hidden rounded-2xl border h-[140px] p-6 flex flex-col gap-3 transition-all duration-300 motion-safe:transform-gpu ${
                 f.isHero
-                  ? "border-red-400/60 bg-gradient-to-br from-red-50/80 via-gray-50 to-gray-50 shadow-lg hover:shadow-[0_12px_40px_rgba(220,38,38,0.3)] hover:-translate-y-1.5 hover:border-red-500"
-                  : "border-gray-300 bg-gray-50 shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:-translate-y-1 hover:border-red-400"
+                  ? "border-accent/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 shadow-lg hover:shadow-[0_12px_40px_rgba(225,6,0,0.3)] hover:-translate-y-1.5 hover:border-accent"
+                  : "border-gray-700/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 shadow-md hover:shadow-[0_8px_30px_rgba(225,6,0,0.2)] hover:-translate-y-1 hover:border-accent/50"
               }`}
               aria-label={`${f.title} hizmeti: ${f.desc}`}
             >
+              {/* Premium Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Glassmorphism Effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
+
               {/* Hero hizmet için üst gradient bant */}
               {f.isHero && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
-              )}
-
-              {/* Hero için arka plan glow efekti */}
-              {f.isHero && (
-                <div className="absolute inset-0 bg-gradient-to-br from-red-100/20 via-transparent to-transparent opacity-50" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-accent to-accent shadow-[0_0_10px_rgba(225,6,0,0.5)]" />
               )}
 
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 before:content-[''] before:absolute before:-inset-20 before:bg-[radial-gradient(40%_30%_at_20%_0%,rgba(220,38,38,0.08),transparent_60%)]" />
@@ -494,8 +487,8 @@ export default function Home() {
                 <div
                   className={`shrink-0 h-12 w-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${
                     f.isHero
-                      ? "bg-gradient-to-br from-red-100 to-red-200 shadow-md shadow-red-200/50 group-hover:from-red-200 group-hover:to-red-300 group-hover:shadow-lg group-hover:shadow-red-300/60"
-                      : "bg-red-50 group-hover:bg-gradient-to-br group-hover:from-red-100 group-hover:to-red-200"
+                      ? "bg-accent/10 backdrop-blur-sm border border-accent/30 shadow-md shadow-accent/20 group-hover:bg-accent/20 group-hover:shadow-lg group-hover:shadow-accent/30"
+                      : "bg-accent/10 backdrop-blur-sm border border-accent/30 group-hover:bg-accent/20"
                   }`}
                 >
                   <Image
@@ -512,29 +505,29 @@ export default function Home() {
                     <h3
                       className={`text-base font-bold transition-colors duration-300 relative inline-block ${
                         f.isHero
-                          ? "text-gray-900"
-                          : "text-gray-900 group-hover:text-red-600"
+                          ? "text-white"
+                          : "text-white group-hover:text-accent"
                       }`}
                     >
                       {f.title}
                       {!f.isHero && (
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-red-600 transition-all duration-500 group-hover:w-full group-hover:shadow-[0_0_8px_rgba(220,38,38,0.6)]"></span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-accent transition-all duration-500 group-hover:w-full group-hover:shadow-[0_0_8px_rgba(225,6,0,0.6)]"></span>
                       )}
                     </h3>
                     {f.isHero && (
-                      <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-[10px] font-bold text-white uppercase tracking-wider shadow-sm">
+                      <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-gradient-to-r from-accent to-accent/90 text-[10px] font-bold text-white uppercase tracking-wider shadow-sm">
                         Popüler
                       </span>
                     )}
                   </div>
                   {f.isHero && (
-                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 via-red-600 to-red-500 shadow-[0_0_6px_rgba(220,38,38,0.4)]"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent via-accent to-accent shadow-[0_0_6px_rgba(225,6,0,0.4)]"></div>
                   )}
                   <p
                     className={`mt-1 text-sm transition-colors duration-300 line-clamp-1 ${
                       f.isHero
-                        ? "text-gray-700 font-medium"
-                        : "text-gray-600 group-hover:text-gray-900"
+                        ? "text-gray-300 font-medium"
+                        : "text-gray-400 group-hover:text-gray-300"
                     }`}
                     title={f.desc}
                   >
@@ -547,8 +540,8 @@ export default function Home() {
                 <span
                   className={`text-[10px] uppercase tracking-widest transition-colors duration-300 font-semibold ${
                     f.isHero
-                      ? "text-red-600/70"
-                      : "text-gray-400 group-hover:text-red-500"
+                      ? "text-accent/70"
+                      : "text-gray-500 group-hover:text-accent"
                   }`}
                 >
                   Hizmet
@@ -557,8 +550,8 @@ export default function Home() {
                   type="button"
                   className={`text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 rounded px-2 py-1 ${
                     f.isHero
-                      ? "text-red-700 hover:text-red-800 focus:ring-red-500 bg-red-50/50 hover:bg-red-50"
-                      : "text-red-600 hover:text-red-700 focus:ring-red-500"
+                      ? "text-accent hover:text-accent/80 focus:ring-accent bg-accent/10 hover:bg-accent/20"
+                      : "text-accent hover:text-accent/80 focus:ring-accent"
                   }`}
                   aria-label={`${f.title} hizmeti detayları`}
                   onClick={(e) => {
@@ -569,20 +562,24 @@ export default function Home() {
                   Detay →
                 </button>
               </div>
+
+              {/* Bottom Accent Border */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             </article>
           ))}
         </div>
       </section>
 
       {/* ÖZELLİKLER */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50">
+      <section className="container-px py-16 sm:py-20">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Hızlı Teslimat */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="group relative overflow-hidden rounded-2xl border border-accent/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 p-8 text-center transition-all duration-500 hover:shadow-[0_10px_40px_rgba(225,6,0,0.2)] hover:-translate-y-2 hover:border-accent">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -597,20 +594,21 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-accent">
                   Hızlı Teslimat
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-300">
                   Aynı gün fiyatlandırma ve hızlı üretim süreci
                 </p>
               </div>
             </div>
 
             {/* Yüksek Kalite */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="group relative overflow-hidden rounded-2xl border border-accent/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 p-8 text-center transition-all duration-500 hover:shadow-[0_10px_40px_rgba(225,6,0,0.2)] hover:-translate-y-2 hover:border-accent">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -625,20 +623,21 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-accent">
                   Yüksek Kalite
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-300">
                   En kaliteli malzemeler ve hassas üretim teknikleri
                 </p>
               </div>
             </div>
 
             {/* Profesyonel Üretim */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-red-300 bg-gradient-to-br from-red-50 to-white p-8 text-center transition-all duration-300 hover:shadow-[0_10px_40px_rgba(220,38,38,0.2)] hover:-translate-y-2 hover:border-red-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="group relative overflow-hidden rounded-2xl border border-accent/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 p-8 text-center transition-all duration-500 hover:shadow-[0_10px_40px_rgba(225,6,0,0.2)] hover:-translate-y-2 hover:border-accent">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -653,10 +652,10 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-600">
+                <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-accent">
                   Profesyonel Üretim
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-300">
                   Uzman ekip ve modern ekipmanlarla kusursuz sonuçlar
                 </p>
               </div>
@@ -666,24 +665,24 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section id="teklif" className="container-px py-16 sm:py-20 bg-gray-50">
-        <div className="rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-gray-50 to-red-50/50 p-8 sm:p-12 shadow-2xl">
+      <section id="teklif" className="container-px py-16 sm:py-20">
+        <div className="rounded-3xl border border-accent/50 bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 p-8 sm:p-12 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
             {/* Sol taraf - Metin, Avantajlar ve Buton */}
             <div className="flex-1 w-full lg:w-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">
                 İhtiyacın olan çıktıyı hemen üretelim
               </h3>
-              <p className="mt-3 text-base text-gray-600 max-w-xl font-medium">
+              <p className="mt-3 text-base text-gray-300 max-w-xl font-medium">
                 Dosyanı gönder, aynı gün fiyatlandırma ve hızlı teslimat.
               </p>
 
               {/* Avantajlar Listesi */}
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent/10 backdrop-blur-sm border border-accent/30 flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-red-600"
+                      className="w-5 h-5 text-accent"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -697,19 +696,19 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       Hızlı Teslimat
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Aynı gün fiyatlandırma
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent/10 backdrop-blur-sm border border-accent/30 flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-red-600"
+                      className="w-5 h-5 text-accent"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -723,17 +722,17 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       Yüksek Kalite
                     </p>
-                    <p className="text-xs text-gray-600">Profesyonel üretim</p>
+                    <p className="text-xs text-gray-400">Profesyonel üretim</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent/10 backdrop-blur-sm border border-accent/30 flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-red-600"
+                      className="w-5 h-5 text-accent"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -747,19 +746,19 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       Uygun Fiyat
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Rekabetçi fiyatlandırma
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent/10 backdrop-blur-sm border border-accent/30 flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-red-600"
+                      className="w-5 h-5 text-accent"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -773,10 +772,10 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       7/24 Destek
                     </p>
-                    <p className="text-xs text-gray-600">Kesintisiz hizmet</p>
+                    <p className="text-xs text-gray-400">Kesintisiz hizmet</p>
                   </div>
                 </div>
               </div>
@@ -784,7 +783,7 @@ export default function Home() {
               <div className="flex gap-4 mt-6">
                 <a
                   href="/teklif"
-                  className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5"
                 >
                   Teklif Al
                 </a>
@@ -815,11 +814,11 @@ export default function Home() {
           aria-labelledby="modal-title"
         >
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100"
+            className="relative w-full max-w-2xl max-h-[90vh] bg-gray-900 rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 border border-gray-700/50"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="relative bg-gradient-to-r from-red-600 to-red-700 p-6 sm:p-8">
+            <div className="relative bg-gradient-to-r from-accent to-accent/90 p-6 sm:p-8">
               <div className="flex items-start gap-4">
                 <div className="shrink-0 h-16 w-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
                   <Image
@@ -838,7 +837,7 @@ export default function Home() {
                   >
                     {selectedService.modalContent.title}
                   </h2>
-                  <p className="text-red-100 text-sm sm:text-base">
+                  <p className="text-white/80 text-sm sm:text-base">
                     {selectedService.modalContent.subtitle}
                   </p>
                 </div>
@@ -866,16 +865,16 @@ export default function Home() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-200px)]">
-              <p className="text-gray-700 text-base leading-relaxed mb-6">
+            <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-200px)] bg-gray-900">
+              <p className="text-gray-300 text-base leading-relaxed mb-6">
                 {selectedService.modalContent.description}
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Özellikler */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-1 h-6 bg-gradient-to-b from-red-500 to-red-600 rounded-full"></span>
+                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-gradient-to-b from-accent to-accent/90 rounded-full"></span>
                     Özellikler
                   </h3>
                   <ul className="space-y-3">
@@ -883,10 +882,10 @@ export default function Home() {
                       (feature, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-sm text-gray-700"
+                          className="flex items-start gap-3 text-sm text-gray-300"
                         >
                           <svg
-                            className="w-5 h-5 text-red-600 shrink-0 mt-0.5"
+                            className="w-5 h-5 text-accent shrink-0 mt-0.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -907,8 +906,8 @@ export default function Home() {
 
                 {/* Kullanım Alanları */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <span className="w-1 h-6 bg-gradient-to-b from-red-500 to-red-600 rounded-full"></span>
+                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-gradient-to-b from-accent to-accent/90 rounded-full"></span>
                     Kullanım Alanları
                   </h3>
                   <ul className="space-y-3">
@@ -916,10 +915,10 @@ export default function Home() {
                       (useCase, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-sm text-gray-700"
+                          className="flex items-start gap-3 text-sm text-gray-300"
                         >
                           <svg
-                            className="w-5 h-5 text-red-600 shrink-0 mt-0.5"
+                            className="w-5 h-5 text-accent shrink-0 mt-0.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -941,12 +940,12 @@ export default function Home() {
             </div>
 
             {/* Modal Footer */}
-            <div className="border-t border-gray-200 bg-gray-50 px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-gray-600">
+            <div className="border-t border-gray-700/50 bg-gray-800 px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-gray-300">
                 Daha fazla bilgi için{" "}
                 <a
                   href="/hizmetler"
-                  className="text-red-600 hover:text-red-700 font-semibold underline"
+                  className="text-accent hover:text-accent/80 font-semibold underline"
                 >
                   hizmetler sayfamızı
                 </a>{" "}
@@ -955,14 +954,14 @@ export default function Home() {
               <div className="flex gap-3">
                 <a
                   href="/teklif"
-                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 text-sm"
                 >
                   Teklif Al
                 </a>
                 <button
                   type="button"
                   onClick={() => setSelectedService(null)}
-                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl border-2 border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl border border-gray-600 text-gray-300 hover:bg-gray-700 font-semibold transition-all duration-300 text-sm"
                 >
                   Kapat
                 </button>

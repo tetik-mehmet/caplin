@@ -14,7 +14,8 @@ export async function POST(request) {
       );
 
       // Cookie'ye kaydet (7 gün geçerli)
-      cookies().set("admin-token", token, {
+      const cookieStore = await cookies();
+      cookieStore.set("admin-token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",

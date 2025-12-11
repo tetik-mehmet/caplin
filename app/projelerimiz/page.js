@@ -3,45 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
-const projects = [
-  {
-    title: "Endüstriyel Prototip Tasarımı",
-    image: "/tasarimlar/tasarim_!.png",
-    category: "Endüstriyel",
-    description:
-      "Yüksek hassasiyetli endüstriyel parça tasarımı ve üretimi. Modern üretim teknikleriyle kusursuz sonuçlar.",
-    tags: ["3D Baskı", "Prototip", "Mühendislik"],
-    stats: { duration: "2 Hafta", complexity: "Yüksek", material: "PLA+" },
-  },
-  {
-    title: "Özel Mekanik Tasarım",
-    image: "/tasarimlar/tasarim_2.png",
-    category: "Mekanik",
-    description:
-      "Karmaşık mekanik parçaların tasarımı ve imalatı. Fonksiyonel ve estetik çözümler.",
-    tags: ["CAD Tasarım", "İmalat", "Montaj"],
-    stats: { duration: "3 Hafta", complexity: "İleri", material: "ABS" },
-  },
-  {
-    title: "İnovatif Ürün Geliştirme",
-    image: "/tasarimlar/tasarim_!.png",
-    category: "İnovasyon",
-    description:
-      "Fikrinizi gerçeğe dönüştürüyoruz. Konsept tasarımdan üretime kadar tam destek.",
-    tags: ["Konsept", "Tasarım", "Üretim"],
-    stats: { duration: "4 Hafta", complexity: "Orta", material: "PETG" },
-  },
-  {
-    title: "Hassas Prototip Üretimi",
-    image: "/tasarimlar/tasarim_2.png",
-    category: "Prototip",
-    description:
-      "Test ve geliştirme süreçleri için hızlı ve hassas prototip üretimi.",
-    tags: ["Rapid Prototyping", "Test", "İterasyon"],
-    stats: { duration: "1 Hafta", complexity: "Orta", material: "Reçine" },
-  },
-];
+// Proje kategorileri ve resimler
+const projectCategories = {
+  maketler: [
+    "/projeler/j350_maket.png",
+    "/projeler/maket_5.png",
+    "/projeler/maket_7.png",
+    "/projeler/maket_hibrid.png",
+  ],
+  prototipler: [
+    "/projeler/prototip.png",
+    "/projeler/kursun_proje.png",
+    "/projeler/cankaya_promosyon.png",
+    "/projeler/promosyon_4.png",
+    "/projeler/promosyon_5.png",
+  ],
+  eğitimler: [
+    "/projeler/egitim.png",
+    "/projeler/egitim_2.png",
+    "/projeler/egitim_3.png",
+  ],
+  tasarımlar: [
+    "/projeler/tasarim.png",
+    "/projeler/tasarim2.png",
+    "/projeler/tasarim3.png",
+    "/projeler/tasarim4.png",
+    "/projeler/tasarim5.png",
+    "/projeler/tasarim_6.png",
+    "/projeler/tasarim_7.png",
+    "/projeler/tasarim_8.png",
+    "/projeler/tasarım1.png",
+  ],
+};
 
 // SEO için structured data
 const structuredData = {
@@ -68,6 +63,16 @@ const organizationSchema = {
 };
 
 export default function ProjelerimizPage() {
+  const [selectedCategory, setSelectedCategory] = useState("maketler");
+  const [hoveredImage, setHoveredImage] = useState(null);
+
+  const categories = [
+    { id: "maketler", name: "Maketler", count: projectCategories.maketler.length },
+    { id: "prototipler", name: "Prototipler", count: projectCategories.prototipler.length },
+    { id: "eğitimler", name: "Eğitimler", count: projectCategories.eğitimler.length },
+    { id: "tasarımlar", name: "Tasarımlar", count: projectCategories.tasarımlar.length },
+  ];
+
   return (
     <>
       {/* SEO: Structured Data */}
@@ -169,123 +174,104 @@ export default function ProjelerimizPage() {
           </div>
         </section>
 
-        {/* PROJECTS GRID */}
+        {/* PROJECTS GALLERY SECTION */}
         <section className="container-px py-16 sm:py-20">
           <div className="max-w-7xl mx-auto">
+            {/* Category Tabs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="mb-12"
             >
-              <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
-                Öne Çıkan Projelerimiz
-              </h2>
-              <p className="text-muted max-w-2xl mx-auto">
-                Her proje benzersiz bir hikaye anlatır. İşte en özel
-                çalışmalarımızdan bazıları.
-              </p>
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`relative px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                      selectedCategory === category.id
+                        ? "bg-accent text-white shadow-lg shadow-accent/30 scale-105"
+                        : "bg-card/50 border border-border text-muted hover:border-accent/40 hover:text-accent"
+                    }`}
+                  >
+                    {category.name}
+                    <span
+                      className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                        selectedCategory === category.id
+                          ? "bg-white/20 text-white"
+                          : "bg-accent/10 text-accent"
+                      }`}
+                    >
+                      {category.count}
+                    </span>
+                    {selectedCategory === category.id && (
+                      <motion.div
+                        layoutId="activeCategory"
+                        className="absolute inset-0 rounded-full bg-accent -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project, i) => (
+            {/* Image Grid */}
+            <motion.div
+              key={selectedCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+            >
+              {projectCategories[selectedCategory].map((image, index) => (
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: i * 0.15 }}
-                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-500 hover:shadow-[0_20px_60px_rgba(225,6,0,0.25)] hover:-translate-y-2"
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  onMouseEnter={() => setHoveredImage(index)}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className="group relative aspect-square overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-500 hover:shadow-[0_20px_60px_rgba(225,6,0,0.25)] hover:-translate-y-2 cursor-pointer"
                 >
-                  {/* Hover gradient effect */}
-                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent" />
-
-                  {/* Image Container */}
-                  <div className="relative h-72 sm:h-80 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+                  {/* Image */}
+                  <div className="relative w-full h-full">
                     <Image
-                      src={project.image}
-                      alt={`${project.title} - ${project.description}`}
+                      src={image}
+                      alt={`${categories.find((c) => c.id === selectedCategory)?.name} - Proje ${index + 1}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
 
-                    {/* Category badge */}
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Hover Effect */}
+                    {hoveredImage === index && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent"
+                      />
+                    )}
+
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-xs font-medium text-white uppercase tracking-wider">
-                        {project.category}
+                        {categories.find((c) => c.id === selectedCategory)?.name}
                       </span>
                     </div>
 
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-
-                    {/* Floating stats on hover */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                    >
-                      {Object.entries(project.stats).map(
-                        ([key, value], idx) => (
-                          <div
-                            key={idx}
-                            className="flex-1 px-3 py-2 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10"
-                          >
-                            <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">
-                              {key === "duration"
-                                ? "Süre"
-                                : key === "complexity"
-                                ? "Zorluk"
-                                : "Malzeme"}
-                            </div>
-                            <div className="text-xs text-white font-semibold">
-                              {value}
-                            </div>
-                          </div>
-                        )
-                      )}
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative p-6">
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 transition-colors duration-300 group-hover:text-accent">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium transition-all duration-300 group-hover:bg-accent/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    {/* Shine Effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </div>
-
-                    {/* Decorative line */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "100%" }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
-                      className="h-px bg-gradient-to-r from-accent/60 via-accent/20 to-transparent"
-                    />
-                  </div>
-
-                  {/* Corner accent */}
-                  <div className="absolute bottom-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-tl from-accent/20 to-transparent blur-2xl" />
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 

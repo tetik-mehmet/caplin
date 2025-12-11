@@ -1,23 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function HakkimizdaPage() {
-  const { scrollYProgress } = useScroll();
-
-  // Smooth spring animation for parallax
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const y = useTransform(smoothProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -44,145 +30,51 @@ export default function HakkimizdaPage() {
     },
   };
 
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  // Generate random animation seeds only on the client after mount to avoid hydration mismatches
-  const [heroParticles, setHeroParticles] = useState([]);
-  const [statsBlobs, setStatsBlobs] = useState([]);
-  const [ctaParticles, setCtaParticles] = useState([]);
-
-  useEffect(() => {
-    setHeroParticles(
-      Array.from({ length: 5 }, () => ({
-        xStartPercent: Math.random() * 100,
-        yStartPx: Math.random() * 300,
-        xDrift: Math.random() * 50 - 25,
-      }))
-    );
-
-    setStatsBlobs(
-      Array.from({ length: 3 }, () => ({
-        x1: Math.random() * 100,
-        y1: Math.random() * 100,
-        x2: Math.random() * 100,
-        y2: Math.random() * 100,
-      }))
-    );
-
-    setCtaParticles(
-      Array.from({ length: 8 }, () => ({
-        xStartPercent: Math.random() * 100,
-        yStartPercent: Math.random() * 100,
-      }))
-    );
-  }, []);
-
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100 overflow-hidden">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-accent/5 overflow-hidden">
       {/* HERO SECTION */}
       <section className="container-px relative isolate flex flex-col items-center justify-center text-center py-20 sm:py-28">
         {/* Animated Background */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <motion.div
-            className="relative w-full h-full bg-gradient-to-b from-red-50/30 via-transparent to-transparent"
-            style={{ y }}
-          />
-          <motion.div
-            className="pointer-events-none absolute inset-0 opacity-10"
-            animate={{
-              background: [
-                "radial-gradient(80% 60% at 50% 30%, rgba(220,38,38,0.15), transparent 60%)",
-                "radial-gradient(80% 60% at 60% 40%, rgba(220,38,38,0.2), transparent 60%)",
-                "radial-gradient(80% 60% at 40% 30%, rgba(220,38,38,0.15), transparent 60%)",
-              ],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
+          <div className="relative w-full h-full bg-gradient-to-br from-accent/10 via-transparent to-accent/5" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-20"
+            style={{
+              background:
+                "radial-gradient(80% 60% at 50% 30%, rgba(225,6,0,0.3), transparent 70%)",
             }}
           />
-
-          {/* Floating particles */}
-          {heroParticles.map((p, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-red-400/20 rounded-full"
-              initial={{
-                x: p.xStartPercent + "%",
-                y: p.yStartPx,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                x: [0, p.xDrift, 0],
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 3 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5,
-              }}
-            />
-          ))}
         </div>
 
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="max-w-4xl"
         >
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900"
-          >
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Hayalden Gerçeğe
-            </motion.span>
-            <motion.span
-              className="block bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent mt-2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Caplin3D
-            </motion.span>
-          </motion.h1>
-
-          <motion.p
-            variants={itemVariants}
-            className="mt-6 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-medium"
-          >
-            3D yazıcı teknolojilerinin sınırlarını zorlayan bir yenilik merkezi
-          </motion.p>
-
-          {/* Animated line decoration */}
           <motion.div
-            className="mt-8 mx-auto w-24 h-1 bg-gradient-to-r from-red-600 to-red-700 rounded-full"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 96, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          />
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs sm:text-sm font-medium uppercase tracking-wider">
+              Hakkımızda
+            </span>
+          </motion.div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.1] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+            Hayalden Gerçeğe
+            <span className="block text-accent mt-2">Caplin3D</span>
+          </h1>
+          <p className="mt-6 text-base sm:text-lg text-muted max-w-2xl mx-auto">
+            3D yazıcı teknolojilerinin sınırlarını zorlayan bir yenilik merkezi
+          </p>
         </motion.div>
       </section>
 
       {/* ABOUT CONTENT CARDS */}
-      <section className="container-px py-16 sm:py-20 bg-gray-100">
+      <section className="container-px py-16 sm:py-20">
         <motion.div
           className="max-w-6xl mx-auto"
           initial="hidden"
@@ -219,29 +111,22 @@ export default function HakkimizdaPage() {
                   scale: 1.02,
                   transition: { type: "spring", stiffness: 300, damping: 20 },
                 }}
-                className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gray-50 p-8 transition-all duration-300 motion-safe:transform-gpu shadow-md hover:shadow-[0_8px_30px_rgba(220,38,38,0.2)] hover:border-red-400"
+                className="group relative bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-accent/50 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-accent/10"
               >
-                {/* Animated gradient background */}
-                <motion.div
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={false}
-                  animate={{
-                    background: [
-                      "radial-gradient(40% 30% at 20% 0%, rgba(220,38,38,0.08), transparent 60%)",
-                      "radial-gradient(40% 30% at 80% 100%, rgba(220,38,38,0.08), transparent 60%)",
-                      "radial-gradient(40% 30% at 20% 0%, rgba(220,38,38,0.08), transparent 60%)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                {/* Premium Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative">
+                {/* Glassmorphism Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
+
+                {/* İçerik */}
+                <div className="relative p-6 sm:p-8">
+                  {/* Üst Accent Line */}
+                  <div className="w-12 h-1 bg-gradient-to-r from-accent to-accent/50 rounded-full mb-6 group-hover:w-20 transition-all duration-500" />
+
+                  {/* Icon */}
                   <motion.div
-                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-50 mb-6 transition-all duration-300 group-hover:bg-red-100"
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 backdrop-blur-sm border border-accent/30 mb-6 transition-all duration-300 group-hover:bg-accent/20"
                     whileHover={{
                       rotate: [0, -10, 10, -10, 0],
                       scale: 1.1,
@@ -249,7 +134,7 @@ export default function HakkimizdaPage() {
                     }}
                   >
                     <motion.svg
-                      className="w-7 h-7 text-red-600"
+                      className="w-7 h-7 text-accent"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -264,8 +149,9 @@ export default function HakkimizdaPage() {
                     </motion.svg>
                   </motion.div>
 
+                  {/* Başlık */}
                   <motion.h3
-                    className="text-xl sm:text-2xl font-bold mb-4 text-gray-900 transition-colors duration-300 group-hover:text-red-600"
+                    className="text-xl sm:text-2xl font-bold mb-4 text-white transition-colors duration-300 group-hover:text-accent leading-tight"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -274,8 +160,9 @@ export default function HakkimizdaPage() {
                     {card.title}
                   </motion.h3>
 
+                  {/* Açıklama */}
                   <motion.p
-                    className="text-sm sm:text-base text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-900"
+                    className="text-sm sm:text-base text-gray-300 leading-relaxed"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -285,18 +172,11 @@ export default function HakkimizdaPage() {
                   </motion.p>
                 </div>
 
-                {/* Shine effect on hover */}
-                <motion.div
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100"
-                  initial={false}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </motion.div>
+                {/* Bottom Accent Border */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+
+                {/* Corner Decoration */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
           </div>
@@ -304,37 +184,13 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          {statsBlobs.map((b, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-64 h-64 bg-red-100/20 rounded-full blur-3xl"
-              initial={{
-                x: b.x1 + "%",
-                y: b.y1 + "%",
-              }}
-              animate={{
-                x: [b.x1 + "%", b.x2 + "%"],
-                y: [b.y1 + "%", b.y2 + "%"],
-              }}
-              transition={{
-                duration: 10 + i * 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
-
+      <section className="container-px py-16 sm:py-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900"
+            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-white"
           >
             <motion.span
               initial={{ opacity: 0, x: -10 }}
@@ -345,7 +201,7 @@ export default function HakkimizdaPage() {
               Neden{" "}
             </motion.span>
             <motion.span
-              className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent"
+              className="text-accent"
               initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -383,24 +239,13 @@ export default function HakkimizdaPage() {
                   y: -5,
                   transition: { type: "spring", stiffness: 400, damping: 15 },
                 }}
-                className="relative group rounded-xl border-2 border-gray-300 bg-gray-50 p-8 text-center overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-red-300"
+                className="relative group bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 rounded-xl border border-gray-700/50 hover:border-accent/50 p-8 text-center overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-accent/10"
               >
-                {/* Animated gradient background */}
-                <motion.div
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  animate={{
-                    background: [
-                      "linear-gradient(135deg, rgba(220,38,38,0.05) 0%, transparent 100%)",
-                      "linear-gradient(225deg, rgba(220,38,38,0.05) 0%, transparent 100%)",
-                      "linear-gradient(135deg, rgba(220,38,38,0.05) 0%, transparent 100%)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                {/* Premium Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Glassmorphism Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
 
                 {/* Pulsing circle background */}
                 <motion.div
@@ -411,7 +256,7 @@ export default function HakkimizdaPage() {
                   transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
                 >
                   <motion.div
-                    className="w-32 h-32 rounded-full border-2 border-red-200/30"
+                    className="w-32 h-32 rounded-full border-2 border-accent/30"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.1, 0.3],
@@ -427,7 +272,7 @@ export default function HakkimizdaPage() {
 
                 <div className="relative">
                   <motion.div
-                    className="text-4xl sm:text-5xl font-bold text-red-600 mb-3"
+                    className="text-4xl sm:text-5xl font-bold text-accent mb-3"
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
@@ -447,7 +292,7 @@ export default function HakkimizdaPage() {
                   </motion.div>
 
                   <motion.div
-                    className="text-sm text-gray-600 uppercase tracking-wider font-semibold"
+                    className="text-sm text-gray-300 uppercase tracking-wider font-semibold"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -458,7 +303,7 @@ export default function HakkimizdaPage() {
 
                   {/* Decorative line */}
                   <motion.div
-                    className="mx-auto mt-4 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent"
+                    className="mx-auto mt-4 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent"
                     initial={{ width: 0, opacity: 0 }}
                     whileInView={{ width: "100%", opacity: 1 }}
                     viewport={{ once: true }}
@@ -466,21 +311,8 @@ export default function HakkimizdaPage() {
                   />
                 </div>
 
-                {/* Corner accents */}
-                <motion.div
-                  className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.1 }}
-                />
-                <motion.div
-                  className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.1 }}
-                />
+                {/* Bottom Accent Border */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </motion.div>
             ))}
           </motion.div>
@@ -488,25 +320,13 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* VALUES SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gray-50 relative overflow-hidden">
-        {/* Animated background grid */}
-        <div className="absolute inset-0 pointer-events-none opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(220,38,38,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.1) 1px, transparent 1px)",
-              backgroundSize: "50px 50px",
-            }}
-          />
-        </div>
-
+      <section className="container-px py-16 sm:py-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900"
+            className="text-2xl sm:text-3xl font-bold text-center mb-12 text-white"
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
@@ -555,28 +375,17 @@ export default function HakkimizdaPage() {
                   scale: 1.02,
                   transition: { type: "spring", stiffness: 300, damping: 20 },
                 }}
-                className="group relative overflow-hidden rounded-xl border-2 border-gray-300 bg-gray-50 p-6 flex gap-4 transition-all duration-300 hover:shadow-lg hover:border-red-300"
+                className="group relative bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 rounded-xl border border-gray-700/50 hover:border-accent/50 p-6 flex gap-4 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-accent/10 overflow-hidden"
               >
-                {/* Animated gradient background */}
-                <motion.div
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  animate={{
-                    background: [
-                      "radial-gradient(circle at 0% 0%, rgba(220,38,38,0.05) 0%, transparent 50%)",
-                      "radial-gradient(circle at 100% 100%, rgba(220,38,38,0.05) 0%, transparent 50%)",
-                      "radial-gradient(circle at 0% 0%, rgba(220,38,38,0.05) 0%, transparent 50%)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                {/* Premium Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Glassmorphism Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
 
                 {/* Icon container with animation */}
                 <motion.div
-                  className="shrink-0 h-12 w-12 rounded-lg bg-red-50 flex items-center justify-center transition-all duration-300 group-hover:bg-red-100 relative"
+                  className="shrink-0 h-12 w-12 rounded-lg bg-accent/10 backdrop-blur-sm border border-accent/30 flex items-center justify-center transition-all duration-300 group-hover:bg-accent/20 relative"
                   whileHover={{
                     rotate: [0, -10, 10, -10, 0],
                     scale: 1.15,
@@ -594,7 +403,7 @@ export default function HakkimizdaPage() {
                 >
                   {/* Pulsing ring */}
                   <motion.div
-                    className="absolute inset-0 rounded-lg border-2 border-red-400"
+                    className="absolute inset-0 rounded-lg border-2 border-accent/50"
                     animate={{
                       scale: [1, 1.3, 1],
                       opacity: [0.5, 0, 0.5],
@@ -608,7 +417,7 @@ export default function HakkimizdaPage() {
                   />
 
                   <motion.svg
-                    className="w-6 h-6 text-red-600 relative z-10"
+                    className="w-6 h-6 text-accent relative z-10"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -625,7 +434,7 @@ export default function HakkimizdaPage() {
 
                 <div className="relative flex-1">
                   <motion.h3
-                    className="text-lg font-bold mb-2 text-gray-900 transition-colors duration-300 group-hover:text-red-600"
+                    className="text-lg font-bold mb-2 text-white transition-colors duration-300 group-hover:text-accent"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -635,7 +444,7 @@ export default function HakkimizdaPage() {
                   </motion.h3>
 
                   <motion.p
-                    className="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-900"
+                    className="text-sm text-gray-300"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -646,7 +455,7 @@ export default function HakkimizdaPage() {
 
                   {/* Progress bar animation */}
                   <motion.div
-                    className="mt-3 h-0.5 bg-gradient-to-r from-red-400 to-red-600 rounded-full origin-left"
+                    className="mt-3 h-0.5 bg-gradient-to-r from-accent to-accent/50 rounded-full origin-left"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
@@ -656,7 +465,7 @@ export default function HakkimizdaPage() {
 
                 {/* Hover arrow indicator */}
                 <motion.div
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-red-600 opacity-0 group-hover:opacity-100"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-accent opacity-0 group-hover:opacity-100"
                   initial={{ x: -10 }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -675,6 +484,9 @@ export default function HakkimizdaPage() {
                     />
                   </svg>
                 </motion.div>
+
+                {/* Bottom Accent Border */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </motion.div>
             ))}
           </motion.div>
@@ -682,209 +494,43 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="container-px py-16 sm:py-20 bg-gradient-to-b from-gray-100 to-gray-50 relative overflow-hidden">
-        {/* Animated particles in background */}
-        <div className="absolute inset-0 pointer-events-none">
-          {ctaParticles.map((p, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-red-400/30 rounded-full"
-              initial={{
-                x: p.xStartPercent + "%",
-                y: p.yStartPercent + "%",
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2 + i * 0.3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.2,
-              }}
-            />
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 20,
-            duration: 0.6,
-          }}
-          className="max-w-4xl mx-auto relative"
-        >
+      <section className="container-px py-16 sm:py-20 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            className="rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-gray-50 to-red-50/50 p-8 sm:p-12 shadow-2xl relative overflow-hidden"
-            whileHover={{
-              scale: 1.02,
-              transition: { type: "spring", stiffness: 300, damping: 20 },
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-r from-accent/90 to-accent rounded-2xl shadow-2xl p-8 sm:p-12 text-center"
           >
-            {/* Animated gradient overlay */}
-            <motion.div
-              className="absolute inset-0 opacity-30 pointer-events-none"
-              animate={{
-                background: [
-                  "radial-gradient(circle at 20% 50%, rgba(220,38,38,0.1) 0%, transparent 50%)",
-                  "radial-gradient(circle at 80% 50%, rgba(220,38,38,0.1) 0%, transparent 50%)",
-                  "radial-gradient(circle at 20% 50%, rgba(220,38,38,0.1) 0%, transparent 50%)",
-                ],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-
-            {/* Floating decorative elements */}
-            <motion.div
-              className="absolute top-4 right-4 w-20 h-20 border-2 border-red-300/30 rounded-full"
-              animate={{
-                rotate: 360,
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-              }}
-            />
-            <motion.div
-              className="absolute bottom-4 left-4 w-16 h-16 border-2 border-red-300/30 rounded-lg"
-              animate={{
-                rotate: -360,
-                scale: [1, 1.15, 1],
-              }}
-              transition={{
-                rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-                scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-              }}
-            />
-
-            <div className="text-center relative">
-              <motion.h3
-                className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              Projeniz İçin Hazır mısınız?
+            </h2>
+            <p className="text-white/90 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+              Hayalinizdeki projeyi birlikte gerçeğe dönüştürelim. Uzman
+              ekibimiz size en iyi çözümü sunmak için burada.
+            </p>
+            <Link
+              href="/teklif"
+              className="inline-flex items-center gap-2 bg-white text-accent px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            >
+              <span>Hemen Teklif Al</span>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <motion.span
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  Projeniz için{" "}
-                </motion.span>
-                <motion.span
-                  className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                >
-                  hazır mısınız?
-                </motion.span>
-              </motion.h3>
-
-              <motion.p
-                className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto mb-8 font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-              >
-                Hayalinizdeki projeyi birlikte gerçeğe dönüştürelim. Uzman
-                ekibimiz size en iyi çözümü sunmak için burada.
-              </motion.p>
-
-              <motion.div
-                className="flex justify-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href="/teklif"
-                    className="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 group relative overflow-hidden"
-                  >
-                    {/* Shine effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: "-100%" }}
-                      animate={{ x: "100%" }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 1,
-                        ease: "easeInOut",
-                      }}
-                    />
-
-                    <span className="relative z-10">Hemen Teklif Al</span>
-
-                    <motion.svg
-                      className="w-5 h-5 ml-2 relative z-10"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </motion.svg>
-                  </Link>
-                </motion.div>
-              </motion.div>
-
-              {/* Pulsing rings around button */}
-              <motion.div
-                className="absolute left-1/2 bottom-8 -translate-x-1/2 w-40 h-12 pointer-events-none"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-              >
-                {[...Array(2)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute inset-0 border-2 border-red-400/30 rounded-xl"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeOut",
-                      delay: i * 1,
-                    }}
-                  />
-                ))}
-              </motion.div>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </Link>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

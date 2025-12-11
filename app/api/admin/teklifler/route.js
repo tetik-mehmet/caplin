@@ -4,8 +4,8 @@ import dbConnect from "@/lib/mongodb";
 import Teklif from "@/models/Teklif";
 
 // Admin kontrolü
-function checkAdminAuth() {
-  const cookieStore = cookies();
+async function checkAdminAuth() {
+  const cookieStore = await cookies();
   const token = cookieStore.get("admin-token");
   return !!token;
 }
@@ -13,7 +13,7 @@ function checkAdminAuth() {
 // Teklifleri getir
 export async function GET(request) {
   try {
-    if (!checkAdminAuth()) {
+    if (!(await checkAdminAuth())) {
       return NextResponse.json(
         { success: false, error: "Yetkisiz erişim" },
         { status: 401 }
@@ -40,7 +40,7 @@ export async function GET(request) {
 // Teklif durumu güncelle
 export async function PATCH(request) {
   try {
-    if (!checkAdminAuth()) {
+    if (!(await checkAdminAuth())) {
       return NextResponse.json(
         { success: false, error: "Yetkisiz erişim" },
         { status: 401 }
@@ -80,7 +80,7 @@ export async function PATCH(request) {
 // Teklif sil
 export async function DELETE(request) {
   try {
-    if (!checkAdminAuth()) {
+    if (!(await checkAdminAuth())) {
       return NextResponse.json(
         { success: false, error: "Yetkisiz erişim" },
         { status: 401 }

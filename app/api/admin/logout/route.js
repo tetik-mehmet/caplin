@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 export async function POST() {
   try {
     // Cookie'yi sil
-    cookies().delete("admin-token");
+    const cookieStore = await cookies();
+    cookieStore.delete("admin-token");
 
     return NextResponse.json(
       { success: true, message: "Çıkış başarılı" },
