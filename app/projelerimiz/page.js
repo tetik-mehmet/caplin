@@ -8,17 +8,20 @@ import { useState } from "react";
 // Proje kategorileri ve resimler
 const projectCategories = {
   maketler: [
+    "/proje1.png",
     "/projeler/j350_maket.png",
     "/projeler/maket_5.png",
     "/projeler/maket_7.png",
     "/projeler/maket_hibrid.png",
+    "/projeler/maket_10.png",
   ],
-  prototipler: [
+  promosyonlar: [
     "/projeler/prototip.png",
     "/projeler/kursun_proje.png",
     "/projeler/cankaya_promosyon.png",
     "/projeler/promosyon_4.png",
     "/projeler/promosyon_5.png",
+    "/projeler/promosyon_9.png",
   ],
   eğitimler: [
     "/projeler/egitim.png",
@@ -67,10 +70,26 @@ export default function ProjelerimizPage() {
   const [hoveredImage, setHoveredImage] = useState(null);
 
   const categories = [
-    { id: "maketler", name: "Maketler", count: projectCategories.maketler.length },
-    { id: "prototipler", name: "Prototipler", count: projectCategories.prototipler.length },
-    { id: "eğitimler", name: "Eğitimler", count: projectCategories.eğitimler.length },
-    { id: "tasarımlar", name: "Tasarımlar", count: projectCategories.tasarımlar.length },
+    {
+      id: "maketler",
+      name: "Maketler",
+      count: projectCategories.maketler.length,
+    },
+    {
+      id: "promosyonlar",
+      name: "Promosyonlar",
+      count: projectCategories.promosyonlar.length,
+    },
+    {
+      id: "eğitimler",
+      name: "Eğitimler",
+      count: projectCategories.eğitimler.length,
+    },
+    {
+      id: "tasarımlar",
+      name: "Tasarımlar",
+      count: projectCategories.tasarımlar.length,
+    },
   ];
 
   return (
@@ -209,7 +228,11 @@ export default function ProjelerimizPage() {
                       <motion.div
                         layoutId="activeCategory"
                         className="absolute inset-0 rounded-full bg-accent -z-10"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        transition={{
+                          type: "spring",
+                          bounce: 0.2,
+                          duration: 0.6,
+                        }}
                       />
                     )}
                   </button>
@@ -239,7 +262,9 @@ export default function ProjelerimizPage() {
                   <div className="relative w-full h-full">
                     <Image
                       src={image}
-                      alt={`${categories.find((c) => c.id === selectedCategory)?.name} - Proje ${index + 1}`}
+                      alt={`${
+                        categories.find((c) => c.id === selectedCategory)?.name
+                      } - Proje ${index + 1}`}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -260,7 +285,10 @@ export default function ProjelerimizPage() {
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-xs font-medium text-white uppercase tracking-wider">
-                        {categories.find((c) => c.id === selectedCategory)?.name}
+                        {
+                          categories.find((c) => c.id === selectedCategory)
+                            ?.name
+                        }
                       </span>
                     </div>
 

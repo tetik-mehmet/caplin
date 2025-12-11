@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const references = [
   {
-    name: "Boğaziçi Üniversitesi",
+    name: "Boğaziçi Savunma",
     image: "/referanslar/bogazici.avif",
     category: "Eğitim",
     description: "Akademik araştırma ve prototip geliştirme projeleri",
@@ -22,6 +22,36 @@ const references = [
     image: "/referanslar/dokuz.avif",
     category: "Eğitim",
     description: "Mühendislik fakültesi araştırma projeleri",
+  },
+  {
+    name: "Hipnodil",
+    image: "/referanslar/hipnodil_reklam.png",
+    category: "Eğitim",
+    description: "Eğitim sektöründe özel çözümler ve prototip üretimi",
+  },
+  {
+    name: "BEDAM",
+    image: "/referanslar/bedam_reklam.png",
+    category: "Teknoloji",
+    description: "Teknoloji alanında yenilikçi projeler ve işbirliği",
+  },
+  {
+    name: "MEGA",
+    image: "/referanslar/mega_reklam.png",
+    category: "Endüstri",
+    description: "Endüstriyel tasarım ve üretim çözümleri",
+  },
+  {
+    name: "Optima",
+    image: "/referanslar/optima_reklam.png",
+    category: "Teknoloji",
+    description: "Yüksek kaliteli teknoloji çözümleri ve iş ortaklığı",
+  },
+  {
+    name: "Ozismak",
+    image: "/referanslar/ozismak_reklam.png",
+    category: "Endüstri",
+    description: "Endüstriyel maket ve prototip üretimi",
   },
 ];
 

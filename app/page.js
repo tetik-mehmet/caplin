@@ -281,7 +281,7 @@ export default function Home() {
                 <div className="flex flex-col justify-center space-y-6">
                   {/* Müşteri Logo */}
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-gray-700/50 p-3 shadow-md border border-gray-600/50 flex items-center justify-center">
+                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-white/90 p-3 shadow-md border border-gray-300/50 flex items-center justify-center">
                       <Image
                         src="/referanslar/bogazici.avif"
                         alt="Boğaziçi Üniversitesi"
@@ -294,7 +294,7 @@ export default function Home() {
                         Müşteri
                       </p>
                       <p className="text-sm font-bold text-white">
-                        Boğaziçi Üniversitesi
+                        Boğaziçi Savunma
                       </p>
                     </div>
                   </div>

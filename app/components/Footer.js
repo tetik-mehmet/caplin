@@ -499,13 +499,61 @@ export default function Footer() {
               <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
             </div>
 
-            {/* Teknopark */}
-            <div className="group relative flex items-center justify-center h-16 sm:h-20 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
+            {/* Hipnodil */}
+            <div className="group relative flex items-center justify-center h-12 sm:h-14 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
               <Image
-                src="/referanslar/teknopark.avif"
-                alt="Teknopark"
-                width={150}
-                height={80}
+                src="/referanslar/hipnodil_reklam.png"
+                alt="Hipnodil"
+                width={120}
+                height={60}
+                className="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
+            </div>
+
+            {/* BEDAM */}
+            <div className="group relative flex items-center justify-center h-12 sm:h-14 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
+              <Image
+                src="/referanslar/bedam_reklam.png"
+                alt="BEDAM"
+                width={120}
+                height={60}
+                className="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
+            </div>
+
+            {/* MEGA */}
+            <div className="group relative flex items-center justify-center h-12 sm:h-14 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
+              <Image
+                src="/referanslar/mega_reklam.png"
+                alt="MEGA"
+                width={120}
+                height={60}
+                className="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
+            </div>
+
+            {/* Optima */}
+            <div className="group relative flex items-center justify-center h-12 sm:h-14 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
+              <Image
+                src="/referanslar/optima_reklam.png"
+                alt="Optima"
+                width={120}
+                height={60}
+                className="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
+            </div>
+
+            {/* Ozismak */}
+            <div className="group relative flex items-center justify-center h-12 sm:h-14 opacity-70 hover:opacity-100 transition-all duration-300 transform hover:scale-110">
+              <Image
+                src="/referanslar/ozismak_reklam.png"
+                alt="Ozismak"
+                width={120}
+                height={60}
                 className="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
               />
               <div className="absolute inset-0 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
